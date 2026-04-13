@@ -22,10 +22,12 @@ import DashboardLayout from "../components/layout/DashboardLayout";
 
 // Dashboard
 import DashboardHome from "../pages/dashboard/DashboardHome";
+import DashboardAITools from "../pages/dashboard/DashboardAITools";
 import Documents from "../pages/dashboard/Documents";
 import StudyPlanner from "../pages/dashboard/StudyPlanner";
 import Profile from "../pages/dashboard/Profile";
 import CustomerSupport from "../pages/dashboard/CustomerSupport";
+import SavedColleges from "../pages/dashboard/SavedColleges";
 
 export default function AppRoutes() {
   return (
@@ -44,7 +46,7 @@ export default function AppRoutes() {
 
       <Route path="/programs" element={<Programs />} />
 
-      <Route path="/ai-tools" element={<AITools />} />
+      <Route path="/Ai-tools" element={<AITools />} />
 
       <Route path="/contact" element={<Contact />} />
 
@@ -58,19 +60,19 @@ export default function AppRoutes() {
       />
 
       <Route
-        path="/dashboard/documents"
+        path="/dashboard/ai-tools"
         element={
           <DashboardLayout>
-            <Documents />
+            <AITools />
           </DashboardLayout>
         }
       />
 
       <Route
-        path="/dashboard/study-planner"
+        path="/dashboard/documents"
         element={
           <DashboardLayout>
-            <StudyPlanner />
+            <Documents />
           </DashboardLayout>
         }
       />
@@ -89,6 +91,17 @@ export default function AppRoutes() {
         element={
           <DashboardLayout>
             <CustomerSupport />
+          </DashboardLayout>
+        }
+      />
+
+    
+
+      <Route
+        path="/dashboard/saved-colleges"
+        element={
+          <DashboardLayout>
+            <SavedColleges />
           </DashboardLayout>
         }
       />
