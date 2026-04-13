@@ -1,0 +1,117 @@
+/* ROOT WRAPPER */
+.dashboard-wrapper {
+  background: #f5efe6; /* soft beige */
+  min-height: 100vh;
+}
+
+/* NAVBAR SPACE HANDLING */
+.dashboard-body {
+  display: flex;
+}
+
+/* SIDEBAR (25%) */
+.sidebar {
+  width: 25%;
+  min-width: 260px;
+  max-width: 300px;
+
+  position: fixed;
+  top: 80px; /* below navbar */
+  left: 0;
+  bottom: 0;
+
+  background: #f5efe6;
+
+  /* CLAYMORPHISM */
+  box-shadow:
+    8px 8px 18px rgba(163, 138, 110, 0.25),
+    -8px -8px 18px rgba(255, 255, 255, 0.8);
+
+  border-radius: 0 20px 20px 0;
+  padding: 25px 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* CONTENT (75%) */
+.dashboard-content {
+  margin-left: 260px; /* match sidebar width EXACTLY */
+  width:100%;
+      padding: 40px 20px;
+
+  /* slight inner elevation */
+  background: #f3ede7;
+
+  min-height: calc(100vh - 80px);
+   overflow-x: hidden;
+}
+
+/* CARDS INSIDE CONTENT (GLOBAL CLAY STYLE) */
+.dashboard-card {
+  background: #f5efe6;
+  border-radius: 20px;
+  padding: 20px;
+
+  box-shadow:
+    6px 6px 14px rgba(163, 138, 110, 0.2),
+    -6px -6px 14px rgba(255, 255, 255, 0.8);
+
+  transition: 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-3px);
+}
+
+/* BUTTON CLAY STYLE */
+.clay-btn {
+  background: #f5efe6;
+  border-radius: 25px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+
+  box-shadow:
+    5px 5px 10px rgba(163, 138, 110, 0.25),
+    -5px -5px 10px rgba(255, 255, 255, 0.9);
+
+  transition: 0.2s ease;
+}
+
+.clay-btn:active {
+  box-shadow:
+    inset 4px 4px 8px rgba(163, 138, 110, 0.25),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    transition: left 0.35s ease;
+    z-index: 10000;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .dashboard-content {
+    margin-left: 250px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .dashboard-content {
+    margin-left: 0;
+    padding: 15px;
+    width: 100%;
+  }
+  
+}

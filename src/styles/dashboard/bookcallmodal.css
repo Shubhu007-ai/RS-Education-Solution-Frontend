@@ -1,0 +1,320 @@
+/* ============================= */
+/* OVERLAY */
+/* ============================= */
+.rs-dashboard-cs-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+}
+
+/* ============================= */
+/* MODAL */
+/* ============================= */
+.rs-dashboard-cs-modal {
+  width: 420px;
+  max-height: 90vh;
+
+  overflow-y: auto;
+  scroll-behavior: smooth;
+
+  /* hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  background: #f5efe6;
+  border-radius: 30px;
+  padding: 25px;
+  position: relative;
+
+  animation: scaleIn 0.3s ease;
+
+  box-shadow:
+    10px 10px 25px rgba(0,0,0,0.15),
+    -10px -10px 25px rgba(255,255,255,0.8);
+}
+
+.rs-dashboard-cs-modal::-webkit-scrollbar {
+  display: none;
+}
+
+/* ============================= */
+/* ANIMATION */
+/* ============================= */
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ============================= */
+/* CLOSE BUTTON */
+/* ============================= */
+.rs-dashboard-cs-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #e6ded3;
+  border-radius: 50%;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.rs-dashboard-cs-modal-close:hover {
+  transform: rotate(90deg);
+}
+
+/* ============================= */
+/* HEADER */
+/* ============================= */
+.rs-dashboard-cs-modal-header {
+  margin-bottom: 10px;
+}
+
+.rs-dashboard-cs-modal-header h2 {
+  font-size: 26px;
+  margin-bottom: 4px;
+}
+
+.rs-dashboard-cs-modal-header span {
+  font-size: 14px;
+  color: #6b6b6b;
+}
+
+/* ============================= */
+/* QUICK DATES */
+/* ============================= */
+.rs-dashboard-cs-quick-dates {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  margin: 15px 0;
+}
+
+.rs-dashboard-cs-quick-date {
+  min-width: 110px;
+  padding: 10px;
+  border-radius: 15px;
+  background: #efe7dc;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.rs-dashboard-cs-quick-date span {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.rs-dashboard-cs-quick-date small {
+  font-size: 11px;
+  color: #777;
+  display: block;
+}
+
+.rs-dashboard-cs-quick-date:hover {
+  transform: scale(1.05);
+}
+
+.rs-dashboard-cs-quick-date.active {
+  background: #8a5a3b;
+  color: white;
+}
+
+/* ============================= */
+/* OPEN CALENDAR BUTTON */
+/* ============================= */
+.rs-dashboard-cs-open-calendar {
+  width: 100%;
+  margin-top: 5px;
+  padding: 12px;
+  border-radius: 15px;
+  border: none;
+  background: #efe7dc;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+
+.rs-dashboard-cs-open-calendar:hover {
+  transform: scale(1.02);
+}
+
+/* ============================= */
+/* CALENDAR HEADER */
+/* ============================= */
+.rs-dashboard-cs-calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+  font-weight: 600;
+}
+
+.rs-dashboard-cs-calendar-header svg {
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  background: #efe7dc;
+  transition: 0.3s;
+}
+
+.rs-dashboard-cs-calendar-header svg:hover {
+  background: #8a5a3b;
+  color: white;
+}
+
+/* ============================= */
+/* CALENDAR GRID */
+/* ============================= */
+.rs-dashboard-cs-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.day-label {
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+}
+
+/* DAY */
+.day {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #efe7dc;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.day:hover:not(.disabled) {
+  transform: scale(1.05);
+}
+
+.day.active {
+  background: #8a5a3b;
+  color: white;
+  transform: scale(1.1);
+}
+
+.day.disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* ============================= */
+/* TIME SLOTS */
+/* ============================= */
+.rs-dashboard-cs-times {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.rs-dashboard-cs-time {
+  padding: 12px;
+  border-radius: 15px;
+  background: #efe7dc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.rs-dashboard-cs-time:hover {
+  transform: scale(1.03);
+}
+
+.rs-dashboard-cs-time.active {
+  background: #8a5a3b;
+  color: white;
+}
+
+/* ============================= */
+/* SUMMARY */
+/* ============================= */
+.rs-dashboard-cs-summary {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 15px;
+  background: #e8dfd3;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* ============================= */
+/* CONFIRM BUTTON */
+/* ============================= */
+.rs-dashboard-cs-confirm {
+  width: 100%;
+  padding: 14px;
+  border-radius: 25px;
+  border: none;
+  background: linear-gradient(135deg, #8a5a3b, #c79a6b);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.rs-dashboard-cs-confirm:hover {
+  transform: scale(1.03);
+}
+
+/* ============================= */
+/* SUCCESS STATE */
+/* ============================= */
+.rs-dashboard-cs-success {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.rs-dashboard-cs-success svg {
+  font-size: 40px;
+  color: #8a5a3b;
+}
+
+.rs-dashboard-cs-success h3 {
+  margin-top: 10px;
+}
+
+.rs-dashboard-cs-success p {
+  font-size: 14px;
+  color: #6b6b6b;
+}
+
+/* ============================= */
+/* MOBILE */
+/* ============================= */
+@media (max-width: 500px) {
+  .rs-dashboard-cs-modal {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .rs-dashboard-cs-times {
+    grid-template-columns: 1fr;
+  }
+
+  .day {
+    height: 36px;
+    font-size: 13px;
+  }
+}

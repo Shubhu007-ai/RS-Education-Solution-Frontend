@@ -1,0 +1,49 @@
+/* ================= GLOBAL RESET & VARS ================= */
+:root {
+  --primary: #D4A373;       /* The warm tan from your palette */
+  --primary-dark: #8B5E34;
+  --secondary: #F3EFE0;     /* Cream background */
+  --neutral: #FDFCF8;       /* Card background */
+  --text-main: #2D2926;
+  --text-muted: #6B6661;
+  --white: #ffffff;
+  --shadow-clay: 10px 10px 30px #e6e3d4, -10px -10px 30px #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--secondary);
+  color: var(--text-main);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.rs-loader {
+  height: calc(100vh - 80px); /* adjust based on navbar height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid #2563eb;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

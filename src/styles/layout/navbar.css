@@ -1,0 +1,318 @@
+/* ========================= */
+/* NAVBAR BASE */
+/* ========================= */
+.navbar {
+  width: 100%;
+  height: 80px;
+  padding: 18px 40px;
+  background: #f3ede7;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #d0b799;
+
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+}
+
+/* ========================= */
+/* LEFT (LOGO) */
+/* ========================= */
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.rs-main-logo {
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
+}
+
+/* ========================= */
+/* CENTER (DESKTOP NAV) */
+/* ========================= */
+.nav-center {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.nav-center a {
+  text-decoration: none;
+  font-size: 17px;
+  color: #333;
+  position: relative;
+  padding-bottom: 4px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-center a:hover {
+  color: #8a5a3b;
+}
+
+.nav-center a.active {
+  color: #8a5a3b;
+  font-weight: 600;
+}
+
+/* UNDERLINE */
+.nav-center a.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: #8b5e2b;
+  border-radius: 2px;
+}
+
+/* ========================= */
+/* RIGHT (USER + BTN) */
+/* ========================= */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rs-user-name {
+  font-size: 17px;
+  font-weight: 500;
+  color: #8a5a3b;
+}
+
+/* BUTTON */
+.btn-primary {
+ background: linear-gradient(135deg, #b07a4f, #8c5a2b);
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 25px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+  
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  
+}
+
+/* ========================= */
+/* HAMBURGER */
+/* ========================= */
+.menu-toggle {
+   display: none;
+  width: 30px;
+  height: 22px;
+
+  position: relative;
+  cursor: pointer;
+  z-index: 11001;
+  color: #8a5a3b;
+  
+}
+
+.menu-toggle span {
+  position: absolute;
+  left: 0;
+
+  width: 90%;
+  height: 3px;
+  background: #8a5a3b;
+  border-radius: 3px;
+
+  transition: all 0.3s ease;
+}
+
+/* TOP */
+.menu-toggle span:nth-child(1) {
+  top: 0;
+}
+
+/* MIDDLE */
+.menu-toggle span:nth-child(2) {
+  top: 9px;
+}
+
+/* BOTTOM */
+.menu-toggle span:nth-child(3) {
+  top: 18px;
+}
+
+/* ========================= */
+/* ACTIVE → X */
+/* ========================= */
+
+/* TOP → diagonal */
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 9px;
+}
+
+/* MIDDLE → disappear */
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+/* BOTTOM → diagonal */
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 9px;
+}
+
+/* ========================= */
+/* OVERLAY */
+/* ========================= */
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+
+  z-index: 9998;
+}
+
+/* ========================= */
+/* DRAWER (MAIN) */
+/* ========================= */
+.nav-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+
+  width: 250px;
+  height: 100%;
+
+  background: #f3ede7;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  padding: 20px;
+
+  transition: right 0.35s ease;
+
+  z-index: 10001;
+
+  box-shadow:
+    -10px 0 20px rgba(163, 138, 110, 0.2),
+    inset 2px 0 6px rgba(255, 255, 255, 0.6);
+}
+
+.nav-drawer.open {
+  right: 0;
+}
+
+/* ========================= */
+/* DRAWER TOP */
+/* ========================= */
+.drawer-top {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.drawer-top span {
+  font-size: 26px;
+  cursor: pointer;
+  color: #8a5a3b;
+}
+
+/* ========================= */
+/* DRAWER LINKS */
+/* ========================= */
+.drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 50px;
+  align-items: center;
+}
+
+.drawer-links a {
+  text-decoration: none;
+  font-size: 17px;
+  color: #333;
+  position: relative;
+  width: fit-content;
+}
+
+.drawer-links a.active {
+  color: #8a5a3b;
+  font-weight: 500;
+}
+
+/* UNDERLINE */
+.drawer-links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: #8b5e2b;
+}
+
+/* ========================= */
+/* DRAWER ACTIONS (BOTTOM) */
+/* ========================= */
+.drawer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  margin-top: auto;
+}
+
+.drawer-actions .btn-primary {
+  width: 100%;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+@media (max-width: 1080px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  /* HIDE DESKTOP */
+  .nav-center {
+    display: none;
+  }
+
+  .nav-right {
+    display: none;
+  }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px) {
+  .nav-drawer {
+    width: 220px;
+  }
+
+  .drawer-links a {
+    font-size: 15px;
+  }
+}

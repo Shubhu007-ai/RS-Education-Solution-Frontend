@@ -1,0 +1,129 @@
+/* OVERLAY */
+.rs-dashboard-cs-ticket-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+    -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+}
+
+/* MODAL */
+.rs-dashboard-cs-ticket-modal {
+  width: 400px;
+  background: #f5efe6;
+  border-radius: 30px;
+  padding: 25px;
+  position: relative;
+
+  animation: scaleIn 0.3s ease;
+
+  box-shadow:
+    10px 10px 25px rgba(0,0,0,0.15),
+    -10px -10px 25px rgba(255,255,255,0.8);
+}
+
+/* ANIMATION */
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* CLOSE */
+.rs-dashboard-cs-ticket-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #e6ded3;
+  border-radius: 50%;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+/* HEADER */
+.rs-dashboard-cs-ticket-header h2 {
+  font-size: 24px;
+}
+
+.rs-dashboard-cs-ticket-header p {
+  font-size: 14px;
+  color: #6b6b6b;
+  margin-bottom: 15px;
+}
+
+/* INPUTS */
+.rs-dashboard-cs-ticket-input,
+.rs-dashboard-cs-ticket-textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 12px;
+  border-radius: 15px;
+  border: none;
+  background: #efe7dc;
+  outline: none;
+  font-size: 14px;
+}
+
+/* TEXTAREA */
+.rs-dashboard-cs-ticket-textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+/* SUBMIT */
+.rs-dashboard-cs-ticket-submit {
+  width: 100%;
+  padding: 14px;
+  border-radius: 25px;
+  border: none;
+  background: linear-gradient(135deg, #8a5a3b, #c79a6b);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.rs-dashboard-cs-ticket-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rs-dashboard-cs-ticket-submit:hover:not(:disabled) {
+  transform: scale(1.03);
+}
+
+/* SUCCESS */
+.rs-dashboard-cs-ticket-success {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.rs-dashboard-cs-ticket-success svg {
+  font-size: 40px;
+  color: #8a5a3b;
+}
+
+.rs-dashboard-cs-ticket-success h3 {
+  margin-top: 10px;
+}
+
+.rs-dashboard-cs-ticket-success p {
+  font-size: 14px;
+  color: #6b6b6b;
+}
+
+.rs-dashboard-cs-ticket-success span {
+  font-size: 13px;
+  color: #8a5a3b;
+}
+
+/* MOBILE */
+@media (max-width: 500px) {
+  .rs-dashboard-cs-ticket-modal {
+    width: 90%;
+  }
+}
