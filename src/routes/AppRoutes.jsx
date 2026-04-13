@@ -78,6 +78,15 @@ export default function AppRoutes() {
       />
 
       <Route
+        path="/dashboard/study-planner"
+        element={
+          <DashboardLayout>
+            <StudyPlanner />
+          </DashboardLayout>
+        }
+      />
+
+      <Route
         path="/dashboard/profile"
         element={
           <DashboardLayout>
