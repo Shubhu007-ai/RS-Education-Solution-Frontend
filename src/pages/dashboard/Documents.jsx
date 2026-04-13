@@ -30,11 +30,14 @@ export default function Documents() {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await axios.get("http://localhost:5000/api/documents", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/api/documents`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       setDocs(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
@@ -62,7 +65,8 @@ export default function Documents() {
       setUploading(true);
       setUploadProgress(0);
 
-      await axios.post("http://localhost:5000/api/documents/upload", formData, {
+      await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}upload`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -88,7 +92,8 @@ export default function Documents() {
     const token = localStorage.getItem("token");
 
     try {
-      await axios.delete(`http://localhost:5000/api/documents/${id}`, {
+      await axios.delete(
+        `${import.meta.env.VITE_API_BASE_URL}/api/documents/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -105,7 +110,7 @@ export default function Documents() {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/documents/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/documents/${id}`,
         { name: newName },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -124,7 +129,7 @@ export default function Documents() {
 
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/documents/share/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/documents/share/${id}`,
         {},
         {
           headers: {
@@ -152,7 +157,7 @@ export default function Documents() {
 
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/documents/download/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/documents/download/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -312,7 +317,7 @@ export default function Documents() {
                   Download
                 </button>
 
-              
+
               </div>
             </>
           ) : (
@@ -423,32 +428,32 @@ export default function Documents() {
       </div>
 
       {deleteId && (
-  <div className="rs-modal-overlay">
-    <div className="rs-modal">
-      <h3>Delete Document?</h3>
-      <p>Are you sure you want to delete this file?</p>
+        <div className="rs-modal-overlay">
+          <div className="rs-modal">
+            <h3>Delete Document?</h3>
+            <p>Are you sure you want to delete this file?</p>
 
-      <div className="rs-modal-actions">
-        <button
-          className="rs-cancel-btn"
-          onClick={() => setDeleteId(null)}
-        >
-          Cancel
-        </button>
+            <div className="rs-modal-actions">
+              <button
+                className="rs-cancel-btn"
+                onClick={() => setDeleteId(null)}
+              >
+                Cancel
+              </button>
 
-        <button
-          className="rs-confirm-delete"
-          onClick={() => {
-            handleDelete(deleteId);
-            setDeleteId(null);
-          }}
-        >
-          Delete
-        </button>
-      </div>
-    </div>
-  </div>
-)}
+              <button
+                className="rs-confirm-delete"
+                onClick={() => {
+                  handleDelete(deleteId);
+                  setDeleteId(null);
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );
