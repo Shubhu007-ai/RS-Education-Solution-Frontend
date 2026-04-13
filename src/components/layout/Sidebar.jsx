@@ -67,6 +67,12 @@ export default function Sidebar() {
             <span>Saved Colleges</span>
           </NavLink>
 
+          <NavLink to="/dashboard/study-planner" className="rs-menu-item" onClick={() => setOpen(false)}>
+            <Brain size={18} />
+            <span>Study Planner</span>
+          </NavLink>
+
+
           <NavLink to="/dashboard/documents" className="rs-menu-item" onClick={() => setOpen(false)}>
             <Folder size={18} />
             <span>Documents</span>
