@@ -26,7 +26,7 @@ export default function AdminDashboard() {
   // ===============================
   const fetchTickets = async () => {
     try {
-      const res = await fetchaxios.get(
+      const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/tickets/all`, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -44,7 +44,7 @@ export default function AdminDashboard() {
   // ===============================
   const fetchBookings = async () => {
     try {
-      const res = await fetchaxios.get(
+      const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/bookings/all`, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -68,7 +68,7 @@ export default function AdminDashboard() {
   // ===============================
   const updateStatus = async (id, status) => {
     try {
-      await fetchaxios.get(
+      await fetch(
               `${import.meta.env.VITE_API_BASE_URL}/api/tickets/${id}`, {
         method: "PUT",
         headers: {

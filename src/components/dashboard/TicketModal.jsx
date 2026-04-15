@@ -32,7 +32,7 @@ export default function TicketModal({ isOpen, onClose }) {
   try {
     const token = localStorage.getItem("token");
 
-    const res = await fetchaxios.get(
+    const res = await fetch(
             `${import.meta.env.VITE_API_BASE_URL}/api/tickets/create`, {
       method: "POST",
       headers: {
