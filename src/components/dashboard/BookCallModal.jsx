@@ -89,7 +89,7 @@ export default function BookCallModal({ isOpen, onClose }) {
 
       const token = localStorage.getItem("token");
 
-      const res = await fetchaxios.get(
+      const res = await fetch(
               `${import.meta.env.VITE_API_BASE_URL}/api/bookings/create`, {
         method: "POST",
         headers: {
