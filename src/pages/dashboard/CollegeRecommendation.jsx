@@ -313,6 +313,26 @@ export default function CollegeRecommendation() {
                 </div>
 
                 <div className="cr-reason-box">{college.reason}</div>
+                <div className="cr-card-bottom">
+                  <div className="cr-exams">
+                    📄 {college.entrance_exam?.join(", ")}
+                  </div>
+
+                  {college.website && (
+                    <a
+                      href={
+                        college.website.startsWith("http")
+                          ? college.website
+                          : `https://${college.website}`
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cr-visit-link"
+                    >
+                     🌐 Visit Website →
+                    </a>
+                  )}
+                </div>
               </div>
             ))
           ) : (

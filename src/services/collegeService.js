@@ -6,8 +6,7 @@
 const MAIN_API = import.meta.env.VITE_API_BASE_URL + "/api";
 
 // Recommender backend (AI college API)
-const RECOMMENDER_API =
-  import.meta.env.VITE_API_BASE_LOCATION_URL + "/api";
+const RECOMMENDER_API = import.meta.env.VITE_API_BASE_LOCATION_URL + "/api";
 
 /* =========================================================
    🔹 TOKEN + HEADERS
@@ -70,6 +69,8 @@ export const saveCollegeApi = async (college) => {
       placement_avg_lpa: college.placement_avg_lpa,
       naac_grade: college.naac_grade,
       reason: college.reason,
+      entrance_exam: college.entrance_exam,
+      website: college.website,
       collegeId: college.name, // unique id
     }),
   });
@@ -85,15 +86,12 @@ export const saveCollegeApi = async (college) => {
    🔹 UNSAVE COLLEGE
 ========================================================= */
 export const unsaveCollegeApi = async (collegeId) => {
-  const res = await fetch(
-    `${MAIN_API}/unsave-college/${collegeId}`,
-    {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${getToken()}`,
-      },
-    }
-  );
+  const res = await fetch(`${MAIN_API}/unsave-college/${collegeId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  });
 
   if (!res.ok) {
     throw new Error("Failed to remove college");

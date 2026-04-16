@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/pages/home.css";
 import Footer from "../../src/components/layout/Footer";
 import { Bot, BotMessageSquare, Sparkles } from 'lucide-react';
+import OurPartner from "../components/layout/OurPartner";
 
 
 const Home = () => {
@@ -276,6 +277,10 @@ const Home = () => {
           </div>
         </section>
       </main>
+
+        {/* Our Partners */}
+        <OurPartner />
+
 
       {/* Footer */}
       <Footer />

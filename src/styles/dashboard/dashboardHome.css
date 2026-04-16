@@ -247,24 +247,24 @@
 }
 
 /* SECTION HEADER */
-.rs-section-header {
+.rs-dashboard-section-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 14px;
 }
 
-.rs-section-header h3 {
+.rs-dashboard-section-header h3 {
   font-size: 18px;
 }
 
-.rs-section-header span {
+.rs-dashboard-section-header span {
   font-size: 12px;
   color: #a67c52;
   cursor: pointer;
 }
 
 /* TASK CARD */
-.rs-task-card {
+.rs-dashboard-task-card {
   display: flex;
   gap: 12px;
   align-items: center;
@@ -280,38 +280,38 @@
     -5px -5px 12px rgba(255, 255, 255, 0.9);
 }
 
-.rs-task-card h4 {
+.rs-dashboard-task-card h4 {
   font-size: 14px;
 }
 
-.rs-task-card p {
+.rs-dashboard-task-card p {
   font-size: 12px;
   color: #8a817c;
 }
 
 /* STATES */
-.rs-task-card.warning {
+.rs-dashboard-task-card.warning {
   color: #c0392b;
 }
 
-.rs-task-card.completed {
+.rs-dashboard-task-card.completed {
   opacity: 0.6;
   text-decoration: line-through;
 }
 
 /* AI TOOLS */
-.rs-ai-tools {
+.rs-dashboard-ai-tools {
   margin-top: 20px;
 }
 
-.rs-ai-grid {
+.rs-dashboard-ai-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 14px;
   margin-top: 10px;
 }
 
-.rs-ai-card {
+.rs-dashboard-ai-card {
   padding: 18px;
   border-radius: 18px;
   text-align: center;
@@ -326,7 +326,16 @@
 }
 
 /* RIGHT PANEL */
-.rs-recommend-card {
+.rs-dashboard-recommend-section {
+  
+  padding: 22px;
+  border-radius: 25px;
+  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.rs-dashboard-recommend-card {
   background: #f5efe6;
   padding: 14px;
   border-radius: 18px;
@@ -337,28 +346,28 @@
     -6px -6px 14px rgba(255, 255, 255, 0.9);
 }
 
-.rs-recommend-img {
+.rs-dashboard-recommend-img {
   height: 120px;
   border-radius: 12px;
   background: linear-gradient(135deg, #7ad68c, #68b07b);
   margin-bottom: 10px;
 }
 
-.rs-recommend-img.alt {
+.rs-dashboard-recommend-img.alt {
   background: linear-gradient(135deg, #2c3e50, #4ca1af);
 }
 
-.rs-recommend-card h4 {
+.rs-dashboard-recommend-card h4 {
   font-size: 14px;
 }
 
-.rs-recommend-card p {
+.rs-dashboard-recommend-card p {
   font-size: 12px;
   color: #8a817c;
   margin: 6px 0;
 }
 
-.rs-recommend-card button {
+.rs-dashboard-recommend-card button {
   width: 100%;
   padding: 14px;
   border-radius: 25px;
@@ -375,7 +384,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .rs-bottom-grid {
+  .rs-dashboard-bottom-grid {
     grid-template-columns: 1fr;
   }
   
@@ -383,44 +392,44 @@
 
 @media (max-width: 992px) {
 
-  .rs-bottom-grid {
+  .rs-dashboard-bottom-grid {
     grid-template-columns: 1fr;
   }
 
-  .rs-main-card{
+  .rs-dashboard-main-card{
     margin: 10px;
   }
   
 }
 
 @media (max-width: 768px) {
-  .rs-bottom-grid {
+  .rs-dashboard-bottom-grid {
     grid-template-columns: 1fr;
   }
 
-  .rs-main-card {
+  .rs-dashboard-main-card {
     flex-direction: column;
   }
 
-  .rs-main-right {
+  .rs-dashboard-main-right {
     width: 100%;
   }
 
-  .rs-main-left {
+  .rs-dashboard-main-left {
     width: 100%;
   }
 
-  .rs-section-header {
+  .rs-dashboard-section-header {
     flex-direction: row;
     justify-content: flex-start;
     gap: 14em;
   }
 
-  .rs-task-card {
+  .rs-dashboard-task-card {
     width: 88%;
   }
 
-  .rs-ai-grid{
+  .rs-dashboard-ai-grid{
     grid-template-columns: repeat(2,1fr);
   }
   

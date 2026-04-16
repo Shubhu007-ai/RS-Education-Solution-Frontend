@@ -113,10 +113,10 @@ useEffect(() => {
       </div>
 
       {/* NEW SECTION */}
-      <div className="rs-bottom-grid">
+      <div className="rs-dashboard-bottom-grid">
         {/* LEFT SIDE */}
-        <div className="rs-tasks-section">
-          <div className="rs-section-header">
+        <div className="rs-dashboard-tasks-section">
+          <div className="rs-dashboard-section-header">
             <h3>Upcoming Tasks</h3>
             <span>View All</span>
           </div>
@@ -127,7 +127,7 @@ useEffect(() => {
             .map((task) => (
               <div
                 key={task._id}
-                className={`rs-task-card ${
+                className={`rs-dashboard-task-card ${
                   task.status === "completed" ? "completed" : ""
                 }`}
               >
@@ -145,33 +145,34 @@ useEffect(() => {
             ))}
 
           {/* AI TOOLS */}
-          <div className="rs-ai-tools">
+          <div className="rs-dashboard-ai-tools">
             <h3>Quick AI Tools</h3>
 
-            <div className="rs-ai-grid">
-              <div className="rs-ai-card">Chatbot</div>
-              <div className="rs-ai-card">Recommender</div>
-              <div className="rs-ai-card">Predictor</div>
-              <div className="rs-ai-card">Planner</div>
+            <div className="rs-dashboard-ai-grid">
+              <div className="rs-dashboard-ai-card">Chatbot</div>
+              <div className="rs-dashboard-ai-card">Recommender</div>
+              <div className="rs-dashboard-ai-card">Predictor</div>
+              <div className="rs-dashboard-ai-card">Planner</div>
             </div>
           </div>
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="rs-recommend-section">
-          <div className="rs-section-header">
-            <h3>Recommended for You</h3>
+        <div className="rs-dashboard-recommend-section">
+          <h3>Recommended for You</h3>
+          <div className="rs-dashboard-section-header">
+            
           </div>
 
-          <div className="rs-recommend-card">
-            <div className="rs-recommend-img"></div>
+          <div className="rs-dashboard-recommend-card">
+            <div className="rs-dashboard-recommend-img"></div>
             <h4>Stanford School of Design</h4>
             <p>Palo Alto, CA • Top 1% in Design</p>
             <button>View Details</button>
           </div>
 
-          <div className="rs-recommend-card">
-            <div className="rs-recommend-img alt"></div>
+          <div className="rs-dashboard-recommend-card">
+            <div className="rs-dashboard-recommend-img alt"></div>
             <h4>MIT Architecture Lab</h4>
             <p>Cambridge, MA • Research Excellence</p>
             <button>View Details</button>
