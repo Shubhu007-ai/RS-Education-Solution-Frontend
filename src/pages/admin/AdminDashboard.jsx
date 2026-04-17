@@ -21,36 +21,38 @@ export default function AdminDashboard() {
   });
 
   useEffect(() => {
-  const handleNewTicket = (ticket) => {
-    setStats((prev) => ({
-      ...prev,
-      totalTickets: prev.totalTickets + 1,
-      pending:
-        ticket.status === "Pending"
-          ? prev.pending + 1
-          : prev.pending,
-      resolved:
-        ticket.status === "Resolved"
-          ? prev.resolved + 1
-          : prev.resolved,
-    }));
-  };
+    const handleNewTicket = (ticket) => {
+      // 🔥 update instantly
+      setStats((prev) => ({
+        ...prev,
+        totalTickets: prev.totalTickets + 1,
+        pending: ticket.status === "Pending" ? prev.pending + 1 : prev.pending,
+        resolved:
+          ticket.status === "Resolved" ? prev.resolved + 1 : prev.resolved,
+      }));
 
-  const handleNewBooking = () => {
-    setStats((prev) => ({
-      ...prev,
-      bookings: prev.bookings + 1,
-    }));
-  };
+      // 🔥 ALSO REFRESH FROM SERVER (IMPORTANT)
+      fetchStats();
+    };
 
-  socket.on("new-ticket", handleNewTicket);
-  socket.on("new-booking", handleNewBooking);
+    const handleNewBooking = () => {
+      setStats((prev) => ({
+        ...prev,
+        bookings: prev.bookings + 1,
+      }));
 
-  return () => {
-    socket.off("new-ticket", handleNewTicket);
-    socket.off("new-booking", handleNewBooking);
-  };
-}, []);
+      // 🔥 ALSO REFRESH FROM SERVER
+      fetchStats();
+    };
+
+    socket.on("new-ticket", handleNewTicket);
+    socket.on("new-booking", handleNewBooking);
+
+    return () => {
+      socket.off("new-ticket", handleNewTicket);
+      socket.off("new-booking", handleNewBooking);
+    };
+  }, []);
 
   const token = localStorage.getItem("token");
 

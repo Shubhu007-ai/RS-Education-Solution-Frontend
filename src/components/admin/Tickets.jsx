@@ -49,7 +49,7 @@ export default function Tickets({ showControls = true }) {
     return () => {
       socket.off("new-ticket", handleNewTicket);
     };
-  }, []);
+  }, [filter]);
 
   const fetchTickets = async () => {
     const res = await fetch(
