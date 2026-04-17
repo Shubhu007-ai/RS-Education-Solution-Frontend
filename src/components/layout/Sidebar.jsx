@@ -29,11 +29,11 @@ export default function Sidebar() {
   return (
     <>
       {/* 🔥 MOBILE HAMBURGER (below navbar) */}
-      <button className="sidebar-toggle" onClick={() => setOpen(!open)}>
+      <div className={`sidebar-toggle ${open ? "active" : ""}`} onClick={() => setOpen(!open)}>
         <span></span>
         <span></span>
         <span></span>
-      </button>
+      </div>
 
       {/* 🔥 OVERLAY */}
       {open && (
