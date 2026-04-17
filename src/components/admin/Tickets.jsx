@@ -46,8 +46,45 @@ export default function Tickets({ showControls = true }) {
 
     socket.on("new-ticket", handleNewTicket);
 
+    const handleTicketUpdated = (updatedTicket) => {
+      setTickets((prev) =>
+        prev.map((t) => (t._id === updatedTicket._id ? updatedTicket : t)),
+      );
+
+      setFilteredTickets((prev) => {
+        const updatedList = prev.map((t) =>
+          t._id === updatedTicket._id ? updatedTicket : t,
+        );
+
+        if (filter === "All") return updatedList;
+
+        return updatedList.filter((t) => t.status === filter);
+      });
+
+      toast.success("Ticket Updated ⚡");
+    };
+
+    socket.on("ticket-updated", handleTicketUpdated);
+
+    const handleTicketDeleted = (id) => {
+      setTickets((prev) => prev.filter((t) => t._id !== id));
+
+      setFilteredTickets((prev) => {
+        const updated = prev.filter((t) => t._id !== id);
+
+        if (filter === "All") return updated;
+        return updated.filter((t) => t.status === filter);
+      });
+
+      toast.success("Ticket Deleted 🗑️");
+    };
+
+    socket.on("ticket-deleted", handleTicketDeleted);
+
     return () => {
       socket.off("new-ticket", handleNewTicket);
+      socket.off("ticket-updated", handleTicketUpdated);
+      socket.off("ticket-deleted", handleTicketDeleted);
     };
   }, [filter]);
 
@@ -98,7 +135,6 @@ export default function Tickets({ showControls = true }) {
     });
 
     toast.success("Updated");
-    fetchTickets();
   };
 
   const deleteTicket = async (id) => {
@@ -108,7 +144,6 @@ export default function Tickets({ showControls = true }) {
     });
 
     toast.success("Deleted");
-    fetchTickets();
   };
 
   return (

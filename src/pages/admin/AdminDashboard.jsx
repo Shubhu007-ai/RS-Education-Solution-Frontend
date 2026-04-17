@@ -30,9 +30,6 @@ export default function AdminDashboard() {
         resolved:
           ticket.status === "Resolved" ? prev.resolved + 1 : prev.resolved,
       }));
-
-      // 🔥 ALSO REFRESH FROM SERVER (IMPORTANT)
-      fetchStats();
     };
 
     const handleNewBooking = () => {
@@ -40,25 +37,31 @@ export default function AdminDashboard() {
         ...prev,
         bookings: prev.bookings + 1,
       }));
+    };
 
-      // 🔥 ALSO REFRESH FROM SERVER
+    const handleTicketUpdated = () => {
+      fetchStats(); // ✅ correct place to refresh
+    };
+
+    const handleTicketDeleted = () => {
       fetchStats();
     };
 
+    socket.on("ticket-deleted", handleTicketDeleted);
+
     socket.on("new-ticket", handleNewTicket);
     socket.on("new-booking", handleNewBooking);
+    socket.on("ticket-updated", handleTicketUpdated);
 
     return () => {
       socket.off("new-ticket", handleNewTicket);
       socket.off("new-booking", handleNewBooking);
+      socket.off("ticket-updated", handleTicketUpdated);
+      socket.off("ticket-deleted", handleTicketDeleted);
     };
   }, []);
 
   const token = localStorage.getItem("token");
-
-  useEffect(() => {
-    fetchStats();
-  }, []);
 
   const fetchStats = async () => {
     try {
@@ -84,6 +87,10 @@ export default function AdminDashboard() {
       console.error(err);
     }
   };
+
+  useEffect(() => {
+    fetchStats();
+  }, []);
 
   return (
     <div className="admin-container">
