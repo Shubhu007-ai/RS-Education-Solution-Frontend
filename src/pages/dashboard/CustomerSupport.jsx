@@ -6,16 +6,19 @@ import {
   FaPhoneAlt,
   FaEnvelope,
   FaPlus,
-  FaMinus
+  FaMinus,
 } from "react-icons/fa";
 
 import BookCallModal from "../../components/dashboard/BookCallModal";
 import TicketModal from "../../components/dashboard/TicketModal";
+import ChatbotSupport from "../../components/dashboard/ChatbotSupport";
 
 export default function CustomerSupport() {
   const [activeIndex, setActiveIndex] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [openTicket, setOpenTicket] = useState(false);
+  const [openChatbot, setOpenChatbot] = useState(false);
+
 
   const toggleFAQ = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -25,28 +28,25 @@ export default function CustomerSupport() {
     {
       question: "How do I track my application status?",
       answer:
-        "You can track your application status directly from your dashboard under the 'My Applications' section."
+        "You can track your application status directly from your dashboard under the 'My Applications' section.",
     },
     {
       question: "What documents are required for university entry?",
       answer:
-        "Typically includes transcripts, SOP, LORs, English proficiency scores, and passport copy."
+        "Typically includes transcripts, SOP, LORs, English proficiency scores, and passport copy.",
     },
     {
       question: "Is there a fee for the initial consultation?",
-      answer:
-        "No, the initial consultation is completely free for all users."
+      answer: "No, the initial consultation is completely free for all users.",
     },
     {
       question: "Can I change my assigned counselor?",
-      answer:
-        "Yes, you can request a counselor change by contacting support."
-    }
+      answer: "Yes, you can request a counselor change by contacting support.",
+    },
   ];
 
   return (
     <div className="rs-dashboard-cs-container">
-
       {/* HERO */}
       <div className="rs-dashboard-cs-hero">
         <p className="rs-dashboard-cs-subtitle">HELP CENTER</p>
@@ -63,7 +63,6 @@ export default function CustomerSupport() {
 
       {/* SUPPORT CARDS */}
       <div className="rs-dashboard-cs-cards">
-
         {/* LIVE CHAT */}
         <div className="rs-dashboard-cs-card">
           <div className="rs-dashboard-cs-icon">
@@ -74,7 +73,12 @@ export default function CustomerSupport() {
             Instant connection with our support specialists. Average wait time:
             2 mins.
           </p>
-          <button>Start Chatting →</button>
+          <button
+            className="rs-chatbotsupport-start-btn"
+            onClick={() => setOpenChatbot(true)}
+          >
+            Start Chatting →
+          </button>
         </div>
 
         {/* BOOK CALL */}
@@ -84,11 +88,10 @@ export default function CustomerSupport() {
           </div>
           <h3>Book a Call</h3>
           <p>
-            Schedule a personalized 15-minute consultation with a senior advisor.
+            Schedule a personalized 15-minute consultation with a senior
+            advisor.
           </p>
-          <button onClick={() => setOpenModal(true)}>
-            Check Calendar →
-          </button>
+          <button onClick={() => setOpenModal(true)}>Check Calendar →</button>
         </div>
 
         {/* EMAIL */}
@@ -101,16 +104,12 @@ export default function CustomerSupport() {
             Send us detailed inquiries. We typically respond within 24 business
             hours.
           </p>
-          <button onClick={() => setOpenTicket(true)}>
-  Submit Ticket →
-</button>
+          <button onClick={() => setOpenTicket(true)}>Submit Ticket →</button>
         </div>
-
       </div>
 
       {/* FAQ SECTION */}
       <div className="rs-dashboard-cs-faq">
-
         {/* LEFT */}
         <div className="rs-dashboard-cs-faq-left">
           <h2>Common Questions</h2>
@@ -118,9 +117,7 @@ export default function CustomerSupport() {
             Can't find what you're looking for? Browse our comprehensive
             documentation library.
           </p>
-          <button className="rs-dashboard-cs-faq-btn">
-            View All FAQs ↗
-          </button>
+          <button className="rs-dashboard-cs-faq-btn">View All FAQs ↗</button>
         </div>
 
         {/* RIGHT */}
@@ -152,16 +149,13 @@ export default function CustomerSupport() {
             </div>
           ))}
         </div>
-
       </div>
 
       {/* CTA SECTION */}
       <div className="rs-dashboard-cs-cta">
         <div>
           <h2>Still need help?</h2>
-          <p>
-            Our emergency support is available 24/7 for premium members.
-          </p>
+          <p>Our emergency support is available 24/7 for premium members.</p>
         </div>
 
         <div className="rs-dashboard-cs-cta-buttons">
@@ -175,18 +169,15 @@ export default function CustomerSupport() {
       </div>
 
       {/* BOOK CALL MODAL */}
-      <BookCallModal
-        isOpen={openModal}
-        onClose={() => setOpenModal(false)}
-      />
+      <BookCallModal isOpen={openModal} onClose={() => setOpenModal(false)} />
 
-        {/* TICKET MODAL */}
-        <TicketModal
-          isOpen={openTicket}
-          onClose={() => setOpenTicket(false)}
-        />
+      {/* TICKET MODAL */}
+      <TicketModal isOpen={openTicket} onClose={() => setOpenTicket(false)} />
 
-
+      {/* CHATBOT SUPPORT MODAL */}
+      {openChatbot && (
+        <ChatbotSupport onClose={() => setOpenChatbot(false)} />
+      )}
     </div>
   );
 }
