@@ -29,6 +29,7 @@ import Profile from "../pages/dashboard/Profile";
 import CustomerSupport from "../pages/dashboard/CustomerSupport";
 import SavedColleges from "../pages/dashboard/SavedColleges";
 import CollegeRecommendation from "../pages/dashboard/CollegeRecommendation";
+import ChatbotSupport from "../components/dashboard/ChatbotSupport";
 
 export default function AppRoutes() {
   return (
@@ -122,6 +123,16 @@ export default function AppRoutes() {
           </DashboardLayout>
         }
       />
+
+      <Route
+        path="/dashboard/chat-support"
+        element={
+          <DashboardLayout>
+            <ChatbotSupport />
+          </DashboardLayout>
+        }
+      />
+
     </Routes>
   );
 }
