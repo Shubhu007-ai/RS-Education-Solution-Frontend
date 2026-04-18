@@ -199,17 +199,17 @@
 
 /* BUTTON */
 .rs-chatbotsupport-send-btn {
-  padding: 11px 16px;
+  padding: 16px;
   border: none;
-  border-radius: 14px;
+  border-radius: 50%;
   cursor: pointer;
-  font-weight: 500;
-
   background: linear-gradient(135deg, #b07a4f, #8c5a2b);
   color: white;
-
   box-shadow: 4px 4px 10px #a07a5a;
   transition: 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .rs-chatbotsupport-send-btn:hover {
@@ -324,7 +324,7 @@
 .rs-chatbotsupport-mic-btn {
   background: #e6d6c7;
   border: none;
-  padding: 12px;
+  padding: 15px;
   border-radius: 50%;
   cursor: pointer;
   transition: 0.3s;

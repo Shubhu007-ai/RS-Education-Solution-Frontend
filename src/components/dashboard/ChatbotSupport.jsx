@@ -6,6 +6,7 @@ import {
   FaMicrophone,
   FaVolumeUp,
   FaVolumeMute,
+  FaPaperPlane,
 } from "react-icons/fa";
 import { BsRobot } from "react-icons/bs";
 
@@ -326,7 +327,7 @@ const ChatbotSupport = ({ onClose }) => {
             onClick={handleSend}
             disabled={isTyping}
           >
-            {isTyping ? "..." : "Send"}
+            {isTyping ? "..." : <FaPaperPlane />}
           </button>
         </div>
       </div>
