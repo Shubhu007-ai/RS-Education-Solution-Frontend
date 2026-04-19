@@ -1,232 +1,369 @@
-import { useState } from "react";
-import "../../src/styles/pages/programs.css";
+import { useRef, useState } from "react";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+
+import programsData from "../data/programsData";
+import ProgramGuidanceModal from "../components/programs/ProgramGuidanceModal";
 import Footer from "../components/layout/Footer";
-import CounsellingModal from "../components/dashboard/CounsellingModal";
+
+import "../../src/styles/pages/programs.css";
 
 export default function Program() {
-  // ✅ STATE
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedProgram, setSelectedProgram] = useState("");
+  /* =====================================
+     MODAL STATE
+  ===================================== */
+  const [rsProgramModalOpen, setRsProgramModalOpen] =
+    useState(false);
 
-  // ✅ PROGRAM DATA (moved from static JSX → dynamic)
-  const programs = [
-    {
-      id: 1,
-      category: "Engineering",
-      image: "/src/assets/images/engineering.png",
-      title: "Advanced Robotics & AI",
-      duration: "4 Years (8 Semesters)",
-      eligibility: "10+2 with Physics & Math",
-      career: "AI Engineer, Robotics Expert",
-    },
-    {
-      id: 2,
-      category: "Medical",
-      image: "/src/assets/images/medical.png",
-      title: "Pre-Medical Excellence",
-      duration: "2 Years Intensive",
-      eligibility: "10+2 with Biology",
-      career: "NEET Preparation & Beyond",
-    },
-    {
-      id: 3,
-      category: "Management",
-      image: "/src/assets/images/management.png",
-      title: "Global Business Strategy",
-      duration: "2 Years (4 Semesters)",
-      eligibility: "Graduation in any stream",
-      career: "Manager, Consultant",
-    },
-    {
-      id: 4,
-      category: "Arts & Commerce",
-      image: "/src/assets/images/arts.png",
-      title: "Digital Media & Arts",
-      duration: "3 Years",
-      eligibility: "10+2 (Any Stream)",
-      career: "UI/UX Designer",
-    },
-    {
-      id: 5,
-      category: "Govt Exam Prep",
-      image: "/src/assets/images/govt.png",
-      title: "Civil Services Mastery",
-      duration: "1 Year",
-      eligibility: "Graduates",
-      career: "IAS, IPS",
-    },
-    {
-      id: 6,
-      category: "Online Courses",
-      image: "/src/assets/images/online.png",
-      title: "Data Science Specialization",
-      duration: "6 Months",
-      eligibility: "Basic Statistics",
-      career: "Data Analyst",
-    },
-  ];
+  const [
+    rsProgramSelectedCourse,
+    setRsProgramSelectedCourse,
+  ] = useState("");
 
-  // ✅ FILTER LOGIC
-  const filteredPrograms =
-    activeCategory === "All"
-      ? programs
-      : programs.filter((p) => p.category === activeCategory);
+  /* =====================================
+     REFS
+  ===================================== */
+  const rsProgramEngineeringRef = useRef(null);
+  const rsProgramMedicalRef = useRef(null);
+  const rsProgramOthersRef = useRef(null);
 
-  return (
-    <>
-      <div className="program-page">
-        {/* HERO SECTION */}
-        <section className="program-hero">
-          <div className="program-hero-left">
-            <span className="program-badge">✨ Curated Excellence</span>
+  /* =====================================
+     DATA GROUPING
+  ===================================== */
+  const rsProgramEngineering =
+    programsData.filter(
+      (item) =>
+        item.category === "Engineering"
+    );
 
-            <h1 className="program-title">
-              Shape Your <span>Future</span> Path.
-            </h1>
+  const rsProgramMedical =
+    programsData.filter(
+      (item) =>
+        item.category === "Medical"
+    );
 
-            <p className="program-desc">
-              Navigate through a sanctuary of educational opportunities. We
-              connect ambitious students with premier institutions across
-              Engineering, Medicine, and Management.
-            </p>
+  const rsProgramOthers =
+    programsData.filter(
+      (item) =>
+        item.category === "Others"
+    );
 
-            <div className="program-hero-buttons">
-              <button className="program-btn primary">View All Courses</button>
-              <button className="program-btn secondary">
-                Speak to Counselor
-              </button>
-            </div>
-          </div>
+  /* =====================================
+     OPEN / CLOSE MODAL
+  ===================================== */
+  const rsProgramOpenModal = (course) => {
+    setRsProgramSelectedCourse(course);
+    setRsProgramModalOpen(true);
+  };
 
-          <div className="program-hero-right">
-            <img
-              src="/src/assets/images/student-success.png"
-              alt="student success"
-            />
-          </div>
-        </section>
+  const rsProgramCloseModal = () => {
+    setRsProgramModalOpen(false);
+    setRsProgramSelectedCourse("");
+  };
 
-        {/* CATEGORY FILTER */}
-        <section className="program-categories">
-          <button
-            className={activeCategory === "All" ? "active" : ""}
-            onClick={() => setActiveCategory("All")}
+  /* =====================================
+     SCROLL
+  ===================================== */
+  const rsProgramScroll = (
+    ref,
+    direction
+  ) => {
+    const amount = 340;
+
+    if (ref.current) {
+      ref.current.scrollBy({
+        left:
+          direction === "left"
+            ? -amount
+            : amount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  /* =====================================
+     TEXT HIGHLIGHT
+  ===================================== */
+  const rsProgramHighlightText = (
+    text
+  ) => {
+    const keywords = [
+      "software",
+      "AI",
+      "data",
+      "doctor",
+      "healthcare",
+      "finance",
+      "design",
+      "business",
+      "research",
+      "technology",
+      "security",
+      "cloud",
+      "coding",
+    ];
+
+    const regex = new RegExp(
+      `(${keywords.join("|")})`,
+      "gi"
+    );
+
+    return text
+      .split(regex)
+      .map((part, index) =>
+        keywords.some(
+          (word) =>
+            word.toLowerCase() ===
+            part.toLowerCase()
+        ) ? (
+          <span
+            key={index}
+            className="rs-program-highlight"
           >
-            All Categories
-          </button>
+            {part}
+          </span>
+        ) : (
+          part
+        )
+      );
+  };
 
-          <button
-            className={activeCategory === "Engineering" ? "active" : ""}
-            onClick={() => setActiveCategory("Engineering")}
-          >
-            Engineering
-          </button>
+  /* =====================================
+     CARD SECTION
+  ===================================== */
+  const rsProgramRenderSection = (
+    title,
+    data,
+    ref
+  ) => (
+    <section className="rs-program-section">
+      <div className="rs-program-section-header">
+        <h2 className="rs-program-section-title">
+          {title}
+        </h2>
+      </div>
 
-          <button
-            className={activeCategory === "Medical" ? "active" : ""}
-            onClick={() => setActiveCategory("Medical")}
-          >
-            Medical
-          </button>
+      <div className="rs-program-scroll-wrapper">
+        {/* LEFT */}
+        <button
+          className="rs-program-arrow rs-program-arrow-left"
+          onClick={() =>
+            rsProgramScroll(ref, "left")
+          }
+        >
+          <FiChevronLeft />
+        </button>
 
-          <button
-            className={activeCategory === "Management" ? "active" : ""}
-            onClick={() => setActiveCategory("Management")}
-          >
-            Management
-          </button>
+        {/* CARDS */}
+        <div
+          className="rs-program-scroll-container"
+          ref={ref}
+        >
+          {data.map((program) => (
+            <div
+              className="rs-program-card"
+              key={program.id}
+            >
+              <img
+                src={program.image}
+                alt={program.title}
+              />
 
-          <button
-            className={activeCategory === "Arts & Commerce" ? "active" : ""}
-            onClick={() => setActiveCategory("Arts & Commerce")}
-          >
-            Arts & Commerce
-          </button>
+              <div className="rs-program-card-content">
+                <span className="rs-program-tag">
+                  {program.category}
+                </span>
 
-          <button
-            className={activeCategory === "Govt Exam Prep" ? "active" : ""}
-            onClick={() => setActiveCategory("Govt Exam Prep")}
-          >
-            Govt Exam Prep
-          </button>
+                <h3 className="rs-program-card-title">
+                  {program.title}
+                </h3>
 
-          <button
-            className={activeCategory === "Online Courses" ? "active" : ""}
-            onClick={() => setActiveCategory("Online Courses")}
-          >
-            Online Courses
-          </button>
-        </section>
-
-        {/* COURSES GRID */}
-        <section className="program-courses">
-          {filteredPrograms.map((program) => (
-            <div className="program-card" key={program.id}>
-              <img src={program.image} alt="" />
-              <div className="program-card-content">
-                <span className="program-tag">{program.category}</span>
-                <h3>{program.title}</h3>
-
-                <p>
-                  <strong>Duration:</strong> {program.duration}
-                </p>
-                <p>
-                  <strong>Eligibility:</strong> {program.eligibility}
-                </p>
-                <p>
-                  <strong>Career Opportunities:</strong> {program.career}
+                <p className="rs-program-card-desc">
+                  {program.description
+                    ?.split("\n")
+                    .map(
+                      (line, index) => (
+                        <span
+                          key={index}
+                        >
+                          {rsProgramHighlightText(
+                            line
+                          )}
+                          <br />
+                        </span>
+                      )
+                    )}
                 </p>
 
                 <button
-                  onClick={() => {
-                    setSelectedProgram(program.title);
-                    setIsModalOpen(true);
-                  }}
+                  className="rs-program-card-btn"
+                  onClick={() =>
+                    rsProgramOpenModal(
+                      program.title
+                    )
+                  }
                 >
                   Get Guidance
                 </button>
               </div>
             </div>
           ))}
-        </section>
+        </div>
 
-        {/* PHILOSOPHY SECTION */}
-        <section className="program-philosophy">
-          <div className="program-philo-image">
-            <img src="/src/assets/images/office.png" alt="" />
+        {/* RIGHT */}
+        <button
+          className="rs-program-arrow rs-program-arrow-right"
+          onClick={() =>
+            rsProgramScroll(ref, "right")
+          }
+        >
+          <FiChevronRight />
+        </button>
+      </div>
+    </section>
+  );
+
+  /* =====================================
+     JSX
+  ===================================== */
+  return (
+    <>
+      <div className="rs-program-page">
+        {/* HERO */}
+        <section className="rs-program-hero">
+          <div className="rs-program-hero-left">
+            <span className="rs-program-badge">
+              ✨ Curated Excellence
+            </span>
+
+            <h1 className="rs-program-title">
+              Shape Your{" "}
+              <span>Future</span> Path.
+            </h1>
+
+            <p className="rs-program-desc">
+              Explore top programs across
+              Engineering, Medical,
+              Management, Design, Law,
+              Commerce and more. Get
+              expert counselling to choose
+              the right career path with
+              confidence.
+            </p>
+
+            <div className="rs-program-hero-buttons">
+              <button
+                className="rs-program-btn rs-program-btn-primary"
+                onClick={() =>
+                  document
+                    .getElementById(
+                      "rs-program-sections"
+                    )
+                    .scrollIntoView({
+                      behavior:
+                        "smooth",
+                    })
+                }
+              >
+                Explore Programs
+              </button>
+
+              <button
+                className="rs-program-btn rs-program-btn-secondary"
+                onClick={() =>
+                  rsProgramOpenModal(
+                    "General Career Guidance"
+                  )
+                }
+              >
+                Speak to Counselor
+              </button>
+            </div>
           </div>
 
-          <div className="program-philo-content">
+          <div className="rs-program-hero-right">
+            <img
+              src="/src/assets/images/student-success.png"
+              alt="Student"
+            />
+          </div>
+        </section>
+
+        {/* PROGRAM SECTIONS */}
+        <div id="rs-program-sections">
+          {rsProgramRenderSection(
+            "Engineering Programs",
+            rsProgramEngineering,
+            rsProgramEngineeringRef
+          )}
+
+          {rsProgramRenderSection(
+            "Medical Programs",
+            rsProgramMedical,
+            rsProgramMedicalRef
+          )}
+
+          {rsProgramRenderSection(
+            "Other Programs",
+            rsProgramOthers,
+            rsProgramOthersRef
+          )}
+        </div>
+
+        {/* PHILOSOPHY */}
+        <section className="rs-program-philosophy">
+          <div className="rs-program-philo-image">
+            <img
+              src="/src/assets/images/office.png"
+              alt="Office"
+            />
+          </div>
+
+          <div className="rs-program-philo-content">
             <h2>
-              Our Philosophy of <span>Precision.</span>
+              Our Philosophy of{" "}
+              <span>
+                Precision.
+              </span>
             </h2>
 
             <p>
-              We don't just provide admissions; we curate journeys. Each student
-              is matched with a program through a rigorous evaluation of
-              aptitude, ambition, and institutional culture.
+              We guide students toward
+              the right career path
+              through structured
+              counselling, practical
+              advice, and deep
+              understanding of their
+              goals.
             </p>
 
-            <div className="program-stats">
+            <div className="rs-program-stats">
               <div>
                 <h3>500+</h3>
-                <span>Global Partners</span>
+                <span>
+                  Partner Colleges
+                </span>
               </div>
+
               <div>
                 <h3>12k+</h3>
-                <span>Successful Alumni</span>
+                <span>
+                  Students Guided
+                </span>
               </div>
             </div>
           </div>
         </section>
-
-        <CounsellingModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          program={selectedProgram}
-        />
       </div>
+
+      {/* MODAL */}
+      <ProgramGuidanceModal
+        isOpen={rsProgramModalOpen}
+        onClose={rsProgramCloseModal}
+        selectedCourse={
+          rsProgramSelectedCourse
+        }
+      />
+
       <Footer />
     </>
   );
