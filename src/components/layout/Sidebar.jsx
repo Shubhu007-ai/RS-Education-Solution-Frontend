@@ -54,14 +54,14 @@ export default function Sidebar() {
             <span>Dashboard</span>
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/dashboard/ai-tools"
             className="rs-menu-item"
             onClick={() => setOpen(false)}
           >
             <FaRobot size={18} />
             <span>AI Tools</span>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink to="/dashboard/college-recommendation" className="rs-menu-item" onClick={() => setOpen(false)}>
             <FaUniversity size={18} />
