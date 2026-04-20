@@ -22,7 +22,6 @@ import DashboardLayout from "../components/layout/DashboardLayout";
 
 // Dashboard
 import DashboardHome from "../pages/dashboard/DashboardHome";
-import DashboardAITools from "../pages/dashboard/DashboardAITools";
 import Documents from "../pages/dashboard/Documents";
 import StudyPlanner from "../pages/dashboard/StudyPlanner";
 import Profile from "../pages/dashboard/Profile";
@@ -64,15 +63,6 @@ export default function AppRoutes() {
         element={
           <DashboardLayout>
             <DashboardHome />
-          </DashboardLayout>
-        }
-      />
-
-      <Route
-        path="/dashboard/ai-tools"
-        element={
-          <DashboardLayout>
-            <AITools />
           </DashboardLayout>
         }
       />
