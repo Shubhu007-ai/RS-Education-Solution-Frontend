@@ -5,6 +5,7 @@ import Services from "../pages/Services";
 import Programs from "../pages/Programs";
 import AITools from "../pages/ai-tools/AITools";
 import Contact from "../pages/Contact";
+import Unsubscribe from "../pages/Unsubscribe";
 
 // Auth
 import Login from "../pages/auth/Login";
@@ -34,6 +35,7 @@ import ChatbotSupport from "../components/dashboard/ChatbotSupport";
 import CareerChatbot from "../pages/ai-tools/CareerChatbot";
 import DocumentAnalyzer from "../pages/ai-tools/DocumentAnalyzer";
 import ScholarshipPrediction from "../pages/ai-tools/ScholarshipPrediction";
+import RoadmapGenerator from "../pages/ai-tools/RoadmapGenerator";
 
 export default function AppRoutes() {
   return (
@@ -57,16 +59,17 @@ export default function AppRoutes() {
       <Route path="/Ai-tools" element={<AITools />} />
       <Route path="/tools/career-chatbot" element={<CareerChatbot />} />
       <Route path="/tools/document-analyzer" element={<DocumentAnalyzer />} />
-      <Route path="/tools/scholarship-prediction" element={<ScholarshipPrediction />} />
-
-      
+      <Route
+        path="/tools/scholarship-prediction"
+        element={<ScholarshipPrediction />}
+      />
+      <Route path="/tools/roadmap-generator" element={<RoadmapGenerator />} />
 
       <Route path="/contact" element={<Contact />} />
 
-      <Route
-  path="/dashboard/saved-colleges"
-  element={<SavedColleges />}
-/>
+      <Route path="/unsubscribe" element={<Unsubscribe />} />
+
+      <Route path="/dashboard/saved-colleges" element={<SavedColleges />} />
 
       <Route
         path="/dashboard"
@@ -113,8 +116,6 @@ export default function AppRoutes() {
         }
       />
 
-    
-
       <Route
         path="/dashboard/college-recommendation"
         element={
@@ -132,7 +133,6 @@ export default function AppRoutes() {
           </DashboardLayout>
         }
       />
-
     </Routes>
   );
 }
