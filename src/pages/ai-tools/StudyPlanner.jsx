@@ -22,15 +22,15 @@ export default function StudyPlanning() {
   const [pomodoroForm, setPomodoroForm] = useState({
     subject: "",
     hours: "",
+    session_minutes: 25,
   });
 
   const [planLoading, setPlanLoading] = useState(false);
   const [summaryLoading, setSummaryLoading] = useState(false);
-  const [pomodoroLoading, setPomodoroLoading] = useState(false);
 
   const [planResult, setPlanResult] = useState("");
   const [summaryResult, setSummaryResult] = useState("");
-  const [pomodoroResult, setPomodoroResult] = useState("");
+  const [showPomodoro, setShowPomodoro] = useState(false);
 
   // ================= HANDLERS =================
   const handlePlan = (e) =>
@@ -41,6 +41,15 @@ export default function StudyPlanning() {
 
   const handlePomodoro = (e) =>
     setPomodoroForm({ ...pomodoroForm, [e.target.name]: e.target.value });
+
+  const cleanText = (text = "") => {
+    return text
+      .replace(/[#*`>\-=]/g, "")
+      .replace(/=+/g, "")
+      .replace(/\n+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  };
 
   // ================= API =================
   const generatePlan = async () => {
@@ -89,34 +98,17 @@ export default function StudyPlanning() {
     }
   };
 
-  const generatePomodoro = async () => {
-    if (!pomodoroForm.subject || !pomodoroForm.hours) {
-      alert("Please fill all fields");
+  const generatePomodoro = () => {
+    if (
+      !pomodoroForm.subject ||
+      !pomodoroForm.hours ||
+      Number(pomodoroForm.hours) <= 0
+    ) {
+      alert("Enter valid subject and hours");
       return;
     }
 
-    setPomodoroLoading(true);
-    setPomodoroResult("");
-
-    try {
-      const query = new URLSearchParams({
-        subject: pomodoroForm.subject,
-        total_hours: pomodoroForm.hours,
-        session_minutes: 25,
-      }).toString();
-
-      const res = await fetch(`${import.meta.env.VITE_POMODORO_API}?${query}`, {
-        method: "POST",
-      });
-
-      const data = await res.json();
-      setPomodoroResult(data.pomodoro_schedule);
-    } catch (e) {
-      console.error(e);
-      setPomodoroResult("Something went wrong");
-    } finally {
-      setPomodoroLoading(false);
-    }
+    setShowPomodoro(true);
   };
 
   // ================= PARSER =================
@@ -126,7 +118,7 @@ export default function StudyPlanning() {
     const lines = text
       .split("\n")
       .map((l) => l.trim())
-      .filter((l) => l.startsWith("|"));
+      .filter((l) => l.trim().startsWith("|"));
 
     if (lines.length < 3) return null;
 
@@ -152,18 +144,24 @@ export default function StudyPlanning() {
     const title = parts[0];
     const tableText = parts.find((p) => p.includes("|"));
     const breakdown = parts.find((p) => p.toLowerCase().includes("breakdown"));
-    const tips = parts.filter(
-      (p) =>
-        p.toLowerCase().includes("tip") ||
-        p.toLowerCase().includes("practice") ||
-        p.toLowerCase().includes("visual"),
-    );
+
+    const tips = parts
+      .join("\n")
+      .split("\n")
+      .filter((line) => {
+        const l = line.toLowerCase().trim();
+        return (
+          l.includes("tip") ||
+          l.match(/^\d+\./) || // matches "1. something"
+          l.startsWith("-") // matches "- something"
+        );
+      });
 
     const table = parseTable(tableText || "");
 
     return (
       <div className="rs-study-plan-full">
-        <h3 className="rs-study-plan-title">{title?.replace(/\*\*/g, "")}</h3>
+        <h3 className="rs-study-plan-title">{cleanText(title)}</h3>
 
         {table && (
           <div className="rs-study-table-wrapper">
@@ -171,15 +169,15 @@ export default function StudyPlanning() {
               <thead>
                 <tr>
                   {table.headers.map((h, i) => (
-                    <th key={i}>{h}</th>
+                    <th key={i}>{cleanText(h)}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {table.rows.map((row, i) => (
-                  <tr key={i}>
+                  <tr key={`row-${i}`}>
                     {row.map((cell, j) => (
-                      <td key={j}>{cell}</td>
+                      <td key={j}>{cleanText(cell)}</td>
                     ))}
                   </tr>
                 ))}
@@ -191,7 +189,7 @@ export default function StudyPlanning() {
         {breakdown && (
           <div className="rs-study-breakdown">
             <h4>Study Plan Breakdown (Hours/day)</h4>
-            <pre>{breakdown}</pre>
+            <pre>{cleanText(breakdown)}</pre>
           </div>
         )}
 
@@ -200,7 +198,8 @@ export default function StudyPlanning() {
             <h4>Pro Tips</h4>
             {tips.map((tip, i) => (
               <div key={i} className="rs-study-tip-item">
-                {tip}
+                <span className="rs-tip-badge">{i + 1}</span>
+                <span>{cleanText(tip).replace(/^\d+\.\s*/, "")}</span>
               </div>
             ))}
           </div>
@@ -211,103 +210,103 @@ export default function StudyPlanning() {
 
   // ================= POMODORO RENDER =================
   const renderPomodoroTable = () => {
-  if (!pomodoroResult) return null;
+    if (!showPomodoro) return null;
 
-  const rows = pomodoroResult
-    .split("\n")
-    .filter((line) => line.startsWith("|") && !line.includes("---"));
+    const totalMinutes = Number(pomodoroForm.hours) * 60;
+    const work = Number(pomodoroForm.session_minutes) || 25;
+    const shortBreak = 5;
+    const longBreak = 15;
 
-  if (rows.length < 3) return <p>{pomodoroResult}</p>;
+    let currentTime = 0;
+    let sessionCount = 0;
+    let formatted = [];
 
-  const dataRows = rows.slice(2).map((row) =>
-    row.split("|").map((c) => c.trim()).slice(1, -1)
-  );
+    const formatTime = (mins) => {
+      const h = Math.floor(mins / 60);
+      const m = mins % 60;
+      return `${h}:${m.toString().padStart(2, "0")}`;
+    };
 
-  let currentTime = 0;
-  let formatted = [];
+    while (currentTime + work <= totalMinutes) {
+      sessionCount++;
 
-  const formatTime = (mins) => {
-    const h = Math.floor(mins / 60);
-    const m = mins % 60;
-    return `${h}:${m.toString().padStart(2, "0")}`;
-  };
+      const breakTime = sessionCount % 4 === 0 ? longBreak : shortBreak;
 
-  for (let i = 0; i < dataRows.length; i++) {
-    const row = dataRows[i];
-
-    const type = row.find((c) =>
-      c.toLowerCase().includes("work")
-    );
-
-    if (type) {
-      let breakTime = "";
-
-      const next = dataRows[i + 1];
-
-      if (next) {
-        const breakCell = next.find((c) =>
-          c.toLowerCase().includes("break")
-        );
-
-        if (breakCell) {
-          breakTime = breakCell.toLowerCase().includes("long")
-            ? "15 min"
-            : "5 min";
-
-          i++; // skip break row
-        }
-      }
+      // stop if break exceeds total time
+      const nextTime = currentTime + work + breakTime;
 
       formatted.push({
         time: formatTime(currentTime),
-        work: "25 min",
-        break: breakTime,
+        work: `${formatTime(currentTime)} - ${formatTime(currentTime + work)}`,
+        break:
+          nextTime <= totalMinutes
+            ? `${formatTime(currentTime + work)} - ${formatTime(nextTime)}`
+            : "-",
       });
 
-      currentTime += 25 + (breakTime === "15 min" ? 15 : breakTime === "5 min" ? 5 : 0);
+      currentTime += work + breakTime;
+
+      if (currentTime >= totalMinutes) break;
     }
-  }
 
-  // final row
-  formatted.push({
-    time: formatTime(currentTime),
-    work: "-",
-    break: "-",
-  });
+    return (
+      <div>
+        <h4 className="rs-study-plan-title">
+          {pomodoroForm.hours}-Hour {pomodoroForm.subject} Study Schedule
+        </h4>
 
-  return (
-    <div>
-      <h4 className="rs-study-plan-title">
-        {pomodoroForm.hours}-Hour {pomodoroForm.subject} Study Schedule
-      </h4>
-
-      <table className="rs-study-table">
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>Work Block</th>
-            <th>Break</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {formatted.map((row, i) => (
-            <tr key={i}>
-              <td>{row.time}</td>
-              <td>{row.work}</td>
-              <td>{row.break}</td>
+        <table className="rs-study-table">
+          <thead>
+            <tr>
+              <th>Start Time</th>
+              <th>Work Block</th>
+              <th>Break</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
 
-      <p className="rs-study-note">
-        This Pomodoro study schedule allows you to complete structured work
-        sessions with short and long breaks within the selected time frame.
-      </p>
-    </div>
-  );
-};
+          <tbody>
+            {formatted.map((row, i) => (
+              <tr key={`row-${i}`}>
+                <td>{row.time}</td>
+                <td>{row.work}</td>
+                <td>{row.break}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <p className="rs-study-note">
+          This Pomodoro schedule is generated based on your selected hours and
+          session time.
+        </p>
+      </div>
+    );
+  };
+
+  const formatSummary = (text) => {
+    if (!text) return "";
+
+    return (
+      text
+        // headings
+        .replace(/###\s*(.*?)\n/g, `<h4> $1</h4>`)
+
+        // bold
+        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+
+        // bullets
+        .replace(/•/g, "<li>")
+
+        // fix colon spacing
+        .replace(/:\s*/g, ": ")
+
+        // line breaks
+        .replace(/\n/g, "<br/>")
+
+        // wrap lists
+        .replace(/(<li>.*<\/li>)/g, "<ul>$1</ul>")
+    );
+  };
 
   // ================= UI =================
   return (
@@ -355,19 +354,32 @@ export default function StudyPlanning() {
             <h2>Generate Your Study Plan</h2>
             <p>Tell us your goal and we’ll map out your journey.</p>
 
-            <div className="rs-study-card">
+            <form
+              className="rs-study-card"
+              onSubmit={(e) => {
+                e.preventDefault();
+                generatePlan();
+              }}
+            >
               <div className="rs-study-row">
                 <div className="rs-study-input-group">
                   <BookOpen size={16} className="rs-study-input-icon" />
                   <input
                     name="subject"
                     placeholder="Subject"
+                    value={planForm.subject}
                     onChange={handlePlan}
                   />
                 </div>
                 <div className="rs-study-input-group">
                   <CalendarDays size={16} className="rs-study-input-icon" />
-                  <input type="date" name="exam_date" onChange={handlePlan} />
+                  <input
+                    type="date"
+                    name="exam_date"
+                    placeholder="Date"
+                    value={planForm.exam_date}
+                    onChange={handlePlan}
+                  />
                 </div>
               </div>
 
@@ -377,11 +389,16 @@ export default function StudyPlanning() {
                   <input
                     type="number"
                     name="daily_hours"
-                    placeholder="Daily Hours"
+                    placeholder="Daily hours"
+                    value={planForm.daily_hours}
                     onChange={handlePlan}
                   />
                 </div>
-                <select name="difficulty" onChange={handlePlan}>
+                <select
+                  name="difficulty"
+                  value={planForm.difficulty}
+                  onChange={handlePlan}
+                >
                   <option>Easy</option>
                   <option>Medium</option>
                   <option>Hard</option>
@@ -392,23 +409,43 @@ export default function StudyPlanning() {
                 <Target size={16} className="rs-study-input-icon" />
                 <textarea
                   name="topics"
-                  placeholder="Topics..."
+                  placeholder="Topics"
+                  value={planForm.topics}
                   onChange={handlePlan}
                 />
               </div>
 
-              <button className="rs-study-btn" onClick={generatePlan}>
-                Generate Plan
+              <button
+                type="submit"
+                className="rs-study-btn"
+                disabled={
+                  planLoading ||
+                  !planForm.subject.trim() ||
+                  !planForm.exam_date ||
+                  !planForm.daily_hours ||
+                  !planForm.topics.trim()
+                }
+              >
+                {planLoading ? (
+                  <span className="rs-btn-loading">
+                    <span className="rs-spinner"></span>
+                    Generating...
+                  </span>
+                ) : (
+                  "Generate Plan"
+                )}
               </button>
-            </div>
+            </form>
 
-            <div className="rs-study-card">
-              {planLoading ? (
-                <div className="rs-study-skeleton"></div>
-              ) : (
-                renderStudyPlanFull()
-              )}
-            </div>
+            {(planLoading || planResult) && (
+              <div className="rs-study-card">
+                {planLoading ? (
+                  <div className="rs-study-skeleton"></div>
+                ) : (
+                  renderStudyPlanFull()
+                )}
+              </div>
+            )}
           </div>
         )}
 
@@ -418,30 +455,62 @@ export default function StudyPlanning() {
             <h2>Topic Summary</h2>
             <p>Get concise notes for quick revision.</p>
 
-            <div className="rs-study-card">
+            <form
+              className="rs-study-card"
+              onSubmit={(e) => {
+                e.preventDefault();
+                generateSummary();
+              }}
+            >
               <div className="rs-study-row">
-                <input
-                  name="topic"
-                  placeholder="Topic"
-                  onChange={handleSummary}
-                />
-                <select name="detail_level" onChange={handleSummary}>
-                  <option>Short</option>
-                  <option>Medium</option>
-                  <option>Detailed</option>
-                </select>
+                <div className="rs-study-input-group">
+                  <input
+                    name="topic"
+                    placeholder="Topic"
+                    value={summaryForm.topic}
+                    onChange={handleSummary}
+                  />
+                </div>
+
+                <div className="rs-study-input-group">
+                  <select
+                    name="detail_level"
+                    value={summaryForm.detail_level}
+                    onChange={handleSummary}
+                  >
+                    <option>Short</option>
+                    <option>Medium</option>
+                    <option>Detailed</option>
+                  </select>
+                </div>
               </div>
 
-              <button className="rs-study-btn" onClick={generateSummary}>
-                Create Summary
+              <button
+                type="submit"
+                className="rs-study-btn"
+                disabled={summaryLoading || !summaryForm.topic}
+              >
+                {summaryLoading ? (
+                  <span className="rs-btn-loading">
+                    <span className="rs-spinner"></span>
+                    Creating...
+                  </span>
+                ) : (
+                  "Create Summary"
+                )}
               </button>
-            </div>
+            </form>
 
             <div className="rs-study-card">
               {summaryLoading ? (
                 <div className="rs-study-skeleton"></div>
               ) : (
-                <div className="rs-study-result">{summaryResult}</div>
+                <div
+                  className="rs-study-summary"
+                  dangerouslySetInnerHTML={{
+                    __html: formatSummary(summaryResult),
+                  }}
+                />
               )}
             </div>
           </div>
@@ -453,7 +522,13 @@ export default function StudyPlanning() {
             <h2>Pomodoro Schedule</h2>
             <p>Optimize your focus with timed blocks.</p>
 
-            <div className="rs-study-card">
+            <form
+              className="rs-study-card"
+              onSubmit={(e) => {
+                e.preventDefault();
+                generatePomodoro();
+              }}
+            >
               <div className="rs-study-row">
                 <div className="rs-study-input-group">
                   <BookOpen size={16} className="rs-study-input-icon" />
@@ -472,20 +547,27 @@ export default function StudyPlanning() {
                     onChange={handlePomodoro}
                   />
                 </div>
+                <div className="rs-study-input-group">
+                  <Timer size={16} className="rs-study-input-icon" />
+                  <input
+                    type="number"
+                    name="session_minutes"
+                    placeholder="Session Minutes (e.g. 25)"
+                    onChange={handlePomodoro}
+                  />
+                </div>
               </div>
 
-              <button className="rs-study-btn" onClick={generatePomodoro}>
+              <button
+                type="submit"
+                className="rs-study-btn"
+                disabled={!pomodoroForm.hours || !pomodoroForm.subject}
+              >
                 Generate Schedule
               </button>
-            </div>
+            </form>
 
-            <div className="rs-study-card">
-              {pomodoroLoading ? (
-                <div className="rs-study-skeleton"></div>
-              ) : (
-                renderPomodoroTable()
-              )}
-            </div>
+            <div className="rs-study-card">{renderPomodoroTable()}</div>
           </div>
         )}
       </div>
