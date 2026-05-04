@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../../styles/ai-tools/studyPlanner.css";
 import { CalendarDays, BookOpen, Timer, Clock, Target } from "lucide-react";
 
 export default function StudyPlanning() {
+  const dropdownRef = useRef();
+  const detailRef = useRef();
+
   const [activeTool, setActiveTool] = useState("study");
 
   // ================= STATES =================
@@ -27,10 +30,28 @@ export default function StudyPlanning() {
 
   const [planLoading, setPlanLoading] = useState(false);
   const [summaryLoading, setSummaryLoading] = useState(false);
-
+  const [difficultyOpen, setDifficultyOpen] = useState(false);
+  const [detailOpen, setDetailOpen] = useState(false);
   const [planResult, setPlanResult] = useState("");
   const [summaryResult, setSummaryResult] = useState("");
   const [showPomodoro, setShowPomodoro] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target) &&
+        detailRef.current &&
+        !detailRef.current.contains(e.target)
+      ) {
+        setDifficultyOpen(false);
+        setDetailOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   // ================= HANDLERS =================
   const handlePlan = (e) =>
@@ -288,23 +309,26 @@ export default function StudyPlanning() {
 
     return (
       text
+        // remove markdown symbols (* + - at start of lines)
+        .replace(/^[*+\-]\s+/gm, "<li>")
+
         // headings
         .replace(/###\s*(.*?)\n/g, `<h4> $1</h4>`)
 
         // bold
         .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
 
-        // bullets
-        .replace(/•/g, "<li>")
-
-        // fix colon spacing
-        .replace(/:\s*/g, ": ")
-
-        // line breaks
+        // convert remaining lines to breaks
         .replace(/\n/g, "<br/>")
 
-        // wrap lists
+        // wrap list items properly
+        .replace(/(<li>.*?)(?=<br\/>|$)/g, "$1</li>")
+
+        // group list items into <ul>
         .replace(/(<li>.*<\/li>)/g, "<ul>$1</ul>")
+
+        // clean extra spaces
+        .replace(/\s+/g, " ")
     );
   };
 
@@ -362,57 +386,91 @@ export default function StudyPlanning() {
               }}
             >
               <div className="rs-study-row">
-                <div className="rs-study-input-group">
-                  <BookOpen size={16} className="rs-study-input-icon" />
-                  <input
-                    name="subject"
-                    placeholder="Subject"
-                    value={planForm.subject}
-                    onChange={handlePlan}
-                  />
+                <div>
+                  <label>Subject</label>
+                  <div className="rs-study-input-group">
+                    <BookOpen size={16} className="rs-study-input-icon" />
+                    <input
+                      name="subject"
+                      placeholder="Subject"
+                      value={planForm.subject}
+                      onChange={handlePlan}
+                    />
+                  </div>
                 </div>
-                <div className="rs-study-input-group">
-                  <CalendarDays size={16} className="rs-study-input-icon" />
-                  <input
-                    type="date"
-                    name="exam_date"
-                    placeholder="Date"
-                    value={planForm.exam_date}
-                    onChange={handlePlan}
-                  />
+                <div>
+                  <label>Exam Date</label>
+                  <div className="rs-study-input-group">
+                    <CalendarDays size={16} className="rs-study-input-icon" />
+                    <input
+                      type="date"
+                      name="exam_date"
+                      placeholder="Date"
+                      value={planForm.exam_date}
+                      onChange={handlePlan}
+                    />
+                  </div>
                 </div>
               </div>
 
               <div className="rs-study-row">
-                <div className="rs-study-input-group">
-                  <Clock size={16} className="rs-study-input-icon" />
-                  <input
-                    type="number"
-                    name="daily_hours"
-                    placeholder="Daily hours"
-                    value={planForm.daily_hours}
+                <div>
+                  <label>Daily Study Hours</label>
+                  <div className="rs-study-input-group">
+                    <Clock size={16} className="rs-study-input-icon" />
+                    <input
+                      type="number"
+                      name="daily_hours"
+                      placeholder="Daily hours"
+                      value={planForm.daily_hours}
+                      onChange={handlePlan}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label>Difficulty Level</label>
+                  <div className="rs-custom-select" ref={dropdownRef}>
+                    <div
+                      className="rs-select-selected"
+                      onClick={() => setDifficultyOpen(!difficultyOpen)}
+                    >
+                      <span>{planForm.difficulty || "Select Difficulty"}</span>
+                      <span className="rs-select-arrow">▾</span>
+                    </div>
+
+                    {difficultyOpen && (
+                      <div className="rs-select-options">
+                        {["Easy", "Medium", "Hard"].map((item) => (
+                          <div
+                            key={item}
+                            className={`rs-select-option ${
+                              planForm.difficulty === item ? "active" : ""
+                            }`}
+                            onClick={() => {
+                              setPlanForm({ ...planForm, difficulty: item });
+                              setDifficultyOpen(false);
+                            }}
+                          >
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label>Topics to Cover</label>
+                <div className="rs-study-input-group textarea">
+                  <Target size={16} className="rs-study-input-icon" />
+                  <textarea
+                    name="topics"
+                    placeholder="Topics"
+                    value={planForm.topics}
                     onChange={handlePlan}
                   />
                 </div>
-                <select
-                  name="difficulty"
-                  value={planForm.difficulty}
-                  onChange={handlePlan}
-                >
-                  <option>Easy</option>
-                  <option>Medium</option>
-                  <option>Hard</option>
-                </select>
-              </div>
-
-              <div className="rs-study-input-group textarea">
-                <Target size={16} className="rs-study-input-icon" />
-                <textarea
-                  name="topics"
-                  placeholder="Topics"
-                  value={planForm.topics}
-                  onChange={handlePlan}
-                />
               </div>
 
               <button
@@ -463,25 +521,58 @@ export default function StudyPlanning() {
               }}
             >
               <div className="rs-study-row">
-                <div className="rs-study-input-group">
-                  <input
-                    name="topic"
-                    placeholder="Topic"
-                    value={summaryForm.topic}
-                    onChange={handleSummary}
-                  />
+                <div>
+                  <label>Topic</label>
+                  <div className="rs-study-input-group">
+                    <input
+                      name="topic"
+                      placeholder="Topic"
+                      value={summaryForm.topic}
+                      onChange={handleSummary}
+                    />
+                  </div>
                 </div>
 
-                <div className="rs-study-input-group">
-                  <select
-                    name="detail_level"
-                    value={summaryForm.detail_level}
-                    onChange={handleSummary}
-                  >
-                    <option>Short</option>
-                    <option>Medium</option>
-                    <option>Detailed</option>
-                  </select>
+                <div>
+                  <label>Detail Level</label>
+
+                  <div className="rs-study-input-group">
+                    <div className="rs-custom-select" ref={detailRef}>
+                      <div
+                        className="rs-select-selected"
+                        onClick={() => setDetailOpen(!detailOpen)}
+                      >
+                        <span>
+                          {summaryForm.detail_level || "Select Level"}
+                        </span>
+                        <span className="rs-select-arrow">▾</span>
+                      </div>
+
+                      {detailOpen && (
+                        <div className="rs-select-options">
+                          {["Short", "Medium", "Detailed"].map((item) => (
+                            <div
+                              key={item}
+                              className={`rs-select-option ${
+                                summaryForm.detail_level === item
+                                  ? "active"
+                                  : ""
+                              }`}
+                              onClick={() => {
+                                setSummaryForm({
+                                  ...summaryForm,
+                                  detail_level: item,
+                                });
+                                setDetailOpen(false);
+                              }}
+                            >
+                              {item}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -519,7 +610,7 @@ export default function StudyPlanning() {
         {/* POMODORO */}
         {activeTool === "pomodoro" && (
           <div className="rs-study-section">
-            <h2>Pomodoro Schedule</h2>
+            <h2>Pomodoro (Time-Boxing) Schedule</h2>
             <p>Optimize your focus with timed blocks.</p>
 
             <form
@@ -530,31 +621,40 @@ export default function StudyPlanning() {
               }}
             >
               <div className="rs-study-row">
-                <div className="rs-study-input-group">
-                  <BookOpen size={16} className="rs-study-input-icon" />
-                  <input
-                    name="subject"
-                    placeholder="Subject"
-                    onChange={handlePomodoro}
-                  />
+                <div>
+                  <label>Subject</label>
+                  <div className="rs-study-input-group">
+                    <BookOpen size={16} className="rs-study-input-icon" />
+                    <input
+                      name="subject"
+                      placeholder="Subject"
+                      onChange={handlePomodoro}
+                    />
+                  </div>
                 </div>
-                <div className="rs-study-input-group">
-                  <Clock size={16} className="rs-study-input-icon" />
-                  <input
-                    type="number"
-                    name="hours"
-                    placeholder="Total Hours"
-                    onChange={handlePomodoro}
-                  />
+                <div>
+                  <label>Total Study Hours</label>
+                  <div className="rs-study-input-group">
+                    <Clock size={16} className="rs-study-input-icon" />
+                    <input
+                      type="number"
+                      name="hours"
+                      placeholder="Total Hours"
+                      onChange={handlePomodoro}
+                    />
+                  </div>
                 </div>
-                <div className="rs-study-input-group">
-                  <Timer size={16} className="rs-study-input-icon" />
-                  <input
-                    type="number"
-                    name="session_minutes"
-                    placeholder="Session Minutes (e.g. 25)"
-                    onChange={handlePomodoro}
-                  />
+                <div>
+                  <label>Session Duration (minutes)</label>
+                  <div className="rs-study-input-group">
+                    <Timer size={16} className="rs-study-input-icon" />
+                    <input
+                      type="number"
+                      name="session_minutes"
+                      placeholder="Session Minutes (e.g. 25)"
+                      onChange={handlePomodoro}
+                    />
+                  </div>
                 </div>
               </div>
 

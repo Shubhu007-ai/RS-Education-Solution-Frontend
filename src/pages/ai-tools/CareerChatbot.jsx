@@ -11,8 +11,6 @@ import {
   Link,
   Send,
   Landmark,
-  ChevronLeft,
-  ChevronRight,
   Mic,
 } from "lucide-react";
 
@@ -311,7 +309,7 @@ export default function CareerChatbot() {
   };
 
   return (
-    <div className={`chat-layout ${!showRightPanel ? "full" : ""}`}>
+    <div className={`chat-layout ${showRightPanel ? "show-right" : ""}`}>
       {/* ===== SIDEBAR ===== */}
       <div className="chat-sidebar">
         <h4>AI COUNSELLOR</h4>
@@ -332,7 +330,11 @@ export default function CareerChatbot() {
           <option value="">All States</option>
           <option value="Delhi">Delhi</option>
           <option value="Haryana">Haryana</option>
-          <option value="UP">UP</option>
+          <option value="Uttar Pradesh">Uttar Pradesh</option>
+          <option value="Uttarakhand">Uttarakhand</option>
+          <option value="Karnataka">Karnataka</option>
+          <option value="Maharashtra">Maharashtra</option>
+          <option value="Tamil Nadu">Tamil Nadu</option>
         </select>
 
         {/* BRANCH CHIPS */}
@@ -467,13 +469,6 @@ export default function CareerChatbot() {
             <div className="chat-header">
               <h2>AI Career Counsellor</h2>
               <button onClick={clearChat}>Clear</button>
-            </div>
-
-            <div
-              className="chat-toggle-btn"
-              onClick={() => setShowRightPanel(!showRightPanel)}
-            >
-              {showRightPanel ? <ChevronRight /> : <ChevronLeft />}
             </div>
 
             <div className="chat-box">

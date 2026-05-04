@@ -23,7 +23,7 @@ export default function StudyPlanner() {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
-          }
+          },
         );
 
         setTasks(res.data);
@@ -78,7 +78,7 @@ export default function StudyPlanner() {
           },
           {
             headers: { Authorization: `Bearer ${token}` },
-          }
+          },
         );
       } else {
         await axios.post(
@@ -90,7 +90,7 @@ export default function StudyPlanner() {
           },
           {
             headers: { Authorization: `Bearer ${token}` },
-          }
+          },
         );
       }
 
@@ -98,7 +98,7 @@ export default function StudyPlanner() {
         `${import.meta.env.VITE_API_BASE_URL}/api/tasks`,
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
 
       setTasks(res.data);
@@ -118,7 +118,7 @@ export default function StudyPlanner() {
         `${import.meta.env.VITE_API_BASE_URL}/api/tasks/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
 
       setTasks((prev) => prev.filter((t) => t._id !== id));
@@ -140,7 +140,7 @@ export default function StudyPlanner() {
         },
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
 
       setTasks((prev) =>
@@ -150,8 +150,8 @@ export default function StudyPlanner() {
                 ...t,
                 status: t.status === "pending" ? "completed" : "pending",
               }
-            : t
-        )
+            : t,
+        ),
       );
 
       window.ditmatchEvent(new Event("tasksUpdated"));
@@ -168,7 +168,7 @@ export default function StudyPlanner() {
 
   const totalTasks = sortedTasks.length;
   const completedTasks = sortedTasks.filter(
-    (t) => t.status === "completed"
+    (t) => t.status === "completed",
   ).length;
 
   const progress =

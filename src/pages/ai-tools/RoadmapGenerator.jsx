@@ -70,6 +70,26 @@ export default function RoadmapGenerator() {
 
   return (
     <div className="roadmapGen-container">
+      <div className="roadmapGen-hero">
+        <div className="roadmapGen-heroTop">
+          <button
+            className="roadmapGen-backBtn"
+            onClick={() => window.history.back()}
+          >
+            ← Back to AI Tools
+          </button>
+
+          <span className="roadmapGen-aiBadge">✨ AI Powered Generator</span>
+        </div>
+
+        <h1 className="roadmapGen-heroTitle">Smart Roadmap Generator</h1>
+
+        <p className="roadmapGen-heroDesc">
+          Generate <span>personalized career roadmaps</span>, get{" "}
+          <span>step-by-step guidance</span>, and discover{" "}
+          <span>skills, tools, and learning paths</span> tailored to your goals.
+        </p>
+      </div>
       {rsRoadmapLoading ? (
         <div className="roadmapGen-formWrapper">
           <div className="roadmapGen-formCard">

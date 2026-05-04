@@ -15,6 +15,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  margin-top: 70px;
   scroll-snap-type: x mandatory;
 }
 
@@ -23,7 +24,7 @@
 }
 
 .rs-study-sidebar {
-  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .rs-study-logo {
@@ -71,8 +72,7 @@
 .rs-study-content {
   flex: 1;
   padding: 25px 30px;
-  max-width: 1000px;
-  margin: 0 auto;
+  margin-top: 70px;
 }
 
 /* ================= SECTION ================= */
@@ -111,14 +111,20 @@
   margin-bottom: 8px;
 }
 
+.rs-study-row > * {
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
 /* ================= LABEL ================= */
 .rs-study-card label {
   display: block;
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 0.8em;
+  font-weight: 800;
   color: #9a7b5f;
-  margin-bottom: 5px;
   letter-spacing: 0.5px;
+  margin-left: 4px;
+  margin-bottom: 4px;
 }
 
 /* ================= INPUT ================= */
@@ -126,6 +132,8 @@
 .rs-study-card select,
 .rs-study-card textarea {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   padding: 10px 12px;
   border-radius: 8px;
   border: 1px solid #ddd4c4;
@@ -133,6 +141,8 @@
   font-size: 14px;
   outline: none;
   transition: all 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .rs-study-card textarea {
@@ -146,6 +156,79 @@
 .rs-study-card textarea:focus {
   border-color: #b07a4f;
   background: #fff;
+}
+
+/* ===== CUSTOM DROPDOWN ===== */
+.rs-custom-select {
+  position: relative;
+  width: 100%;
+}
+
+.rs-select-selected {
+  padding: 10px 12px;
+  background: #f7f3ee;
+  border: 1px solid #ddd4c4;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rs-select-selected:hover {
+  border-color: #b07a4f;
+}
+
+.rs-select-arrow {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* dropdown box */
+.rs-select-options {
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ddd4c4;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  overflow: hidden;
+  animation: dropdownFade 0.2s ease;
+}
+
+/* each option */
+.rs-select-option {
+  padding: 10px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.rs-select-option:hover {
+  background: #d68739;
+}
+
+/* active option */
+.rs-select-option.active {
+  background: linear-gradient(135deg, #b07a4f, #8c5a2b);
+  color: #fff;
+}
+
+/* animation */
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ================= BUTTON ================= */
@@ -171,6 +254,7 @@
 /* ================= TABLE ================= */
 .rs-study-table-wrapper {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .rs-study-table {
@@ -422,17 +506,11 @@
 
 /* ================= RESPONSIVE ================= */
 
-@media (min-width: 1200px) {
-  .rs-study-content {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-}
-
 /* ===== LARGE TABLETS (1024px) ===== */
 @media (max-width: 1024px) {
   .rs-study-content {
     padding: 20px;
+    margin-top: 80px;
   }
 
   .rs-study-sidebar {
@@ -504,6 +582,7 @@
   .rs-study-content {
     max-width: 100%;
     padding: 15px;
+    margin-top: 0;
   }
 
   /* input stacking */
@@ -514,6 +593,12 @@
 
   .rs-study-card {
     padding: 14px;
+  }
+
+  .rs-study-card select {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
   }
 
   .rs-study-btn {
