@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "../../styles/findCollege/PhotoGallery.css";
+import "../../styles/findCollege/photoGallery.css";
 import { fetchGalleryImages } from "../../services/imageService";
 
 const PhotoGallery = () => {
