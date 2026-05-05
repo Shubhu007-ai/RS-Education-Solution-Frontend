@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/ai-tools/RoadmapGenerator.css";
+import "../../styles/ai-tools/roadmapGenerator.css";
 import { Tv, BookOpen, GraduationCap } from "lucide-react";
 
 export default function RoadmapGenerator() {

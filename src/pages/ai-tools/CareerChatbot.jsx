@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../../styles/ai-tools/CareerChatbot.css";
+import "../../styles/ai-tools/careerChatbot.css";
 import {
   GraduationCap,
   Building2,

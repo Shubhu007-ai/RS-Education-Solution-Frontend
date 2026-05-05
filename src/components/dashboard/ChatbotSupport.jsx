@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import "../../styles/dashboard/ChatbotSupport.css";
+import "../../styles/dashboard/chatbotSupport.css";
 import avatarImg from "../../assets/images/avatar.png";
 import {
   FaTimes,
