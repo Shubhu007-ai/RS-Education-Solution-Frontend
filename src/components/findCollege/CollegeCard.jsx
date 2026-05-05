@@ -12,7 +12,7 @@ import {
 import { MdCurrencyRupee } from "react-icons/md";
 import { GiGraduateCap } from "react-icons/gi";
 
-import "../../styles/findcollege/collegeCard.css";
+import "../../styles/findCollege/collegeCard.css";
 import formatCurrency from "../../utils/formatCurrency";
 
 const CollegeCard = ({

@@ -7,7 +7,7 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 
-import "../../styles/findcollege/compareDrawer.css";
+import "../../styles/findCollege/compareDrawer.css";
 
 const CompareDrawer = ({
   compareItems = [],

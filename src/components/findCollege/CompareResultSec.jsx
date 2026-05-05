@@ -11,7 +11,7 @@ import {
 import { MdCurrencyRupee } from "react-icons/md";
 import { GiGraduateCap } from "react-icons/gi";
 
-import "../../styles/findcollege/compareResultSec.css";
+import "../../styles/findCollege/compareResultSec.css";
 import formatCurrency from "../../utils/formatCurrency";
 
 const CompareResultSec = ({

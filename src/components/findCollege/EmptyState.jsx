@@ -2,7 +2,7 @@
 
 import React from "react";
 import { FaSearch, FaRedoAlt } from "react-icons/fa";
-import "../../styles/findcollege/emptyState.css";
+import "../../styles/findCollege/emptyState.css";
 
 const EmptyState = ({ resetFilters }) => {
   return (

@@ -5,7 +5,7 @@ import { FiSearch, FiRotateCcw } from "react-icons/fi";
 import { FaFilter } from "react-icons/fa";
 
 import collegeData from "../../data/colleges.json";
-import "../../styles/findcollege/collegeFilters.css";
+import "../../styles/findCollege/collegeFilters.css";
 
 const CollegeFilters = ({
   filters,

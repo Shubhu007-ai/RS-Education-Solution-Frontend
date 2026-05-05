@@ -2,7 +2,7 @@
 
 import React from "react";
 import CollegeCard from "./CollegeCard";
-import "../../styles/findcollege/collegeGrid.css";
+import "../../styles/findCollege/collegeGrid.css";
 
 const CollegeGrid = ({
   colleges = [],
