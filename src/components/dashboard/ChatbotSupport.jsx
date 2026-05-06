@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import "../../styles/dashboard/chatbotSupport.css";
-import avatarImg from "../../assets/images/avatar.png";
 import {
   FaTimes,
   FaUserCircle,
@@ -261,9 +260,10 @@ const ChatbotSupport = ({ onClose, mode = "modal" }) => {
         <div className="rs-chatbotsupport-header-new">
           <div className="rs-chatbotsupport-header-left">
             <img
-              src={avatarImg}
+              src="/images/home/avatar.png"
               alt="avatar"
               className="rs-chatbotsupport-avatar-img"
+              loading="eager"
             />
             <div>
               <h4>Riddhi</h4>
@@ -368,9 +368,10 @@ const ChatbotSupport = ({ onClose, mode = "modal" }) => {
         <div className="rs-chatbotsupport-header-new">
           <div className="rs-chatbotsupport-header-left">
             <img
-              src={avatarImg}
+              src="/images/home/avatar.png"
               alt="avatar"
               className="rs-chatbotsupport-avatar-img"
+              loading="eager"
             />
             <div>
               <h4>Riddhi</h4>

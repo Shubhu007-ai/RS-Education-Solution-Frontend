@@ -41,7 +41,7 @@ const PhotoGallery = () => {
 
       intervalRef.current = setInterval(() => {
         loadImages();
-      }, 4000);
+      }, 20000);
     };
 
     const timer = setTimeout(startGallery, 100);

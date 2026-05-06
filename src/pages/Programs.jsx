@@ -18,15 +18,15 @@ export default function Program() {
   const [rsProgramModalOpen, setRsProgramModalOpen] = useState(false);
   // const [images, setImages] = useState({});
   const [rsProgramSelectedCourse, setRsProgramSelectedCourse] = useState("");
-  
+
   /* =====================================
    STATIC DATA LOADING (NO DELAY)
 ===================================== */
   useEffect(() => {
-  requestAnimationFrame(() => {
-    setRsProgramLoading(false);
-  });
-}, []);
+    requestAnimationFrame(() => {
+      setRsProgramLoading(false);
+    });
+  }, []);
 
   /* =====================================
      REFS
@@ -150,7 +150,7 @@ export default function Program() {
                 ))
             : data.map((program) => (
                 <div className="rs-program-card" key={program.id}>
-                  <img src={program.image} alt={program.title} />
+                  <img src={program.image} alt={program.title} loading="lazy" />
 
                   <div className="rs-program-card-content">
                     <span className="rs-program-tag">{program.category}</span>
@@ -247,7 +247,8 @@ export default function Program() {
             {rsProgramLoading ? (
               <div className="rs-program-skeleton-hero-img"></div>
             ) : (
-              <img src="/src/assets/images/student-success.png" alt="Student" />
+              <img src="/images/home/student-success.png" alt="Student"
+              loading="eager" />
             )}
           </div>
         </section>
@@ -296,7 +297,8 @@ export default function Program() {
           ) : (
             <>
               <div className="rs-program-philo-image">
-                <img src="/src/assets/images/office.png" alt="Office" />
+                <img src="/images/home/office.png" alt="Office"
+                loading="lazy" />
               </div>
 
               <div className="rs-program-philo-content">

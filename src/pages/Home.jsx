@@ -26,15 +26,15 @@ import {
 } from "lucide-react";
 
 /* HERO IMAGES */
-import heroImg1 from "../assets/images/college1.png";
-import heroImg2 from "../assets/images/college2.png";
-import heroImg3 from "../assets/images/college3.png";
-import heroImg4 from "../assets/images/college4.png";
-import heroImg5 from "../assets/images/college5.png";
+const rsHeroSlides = [
+  "/images/home/college1.png",
+  "/images/home/college2.png",
+  "/images/home/college3.png",
+  "/images/home/college4.png",
+  "/images/home/college5.png",
+];
 
 const Home = () => {
-  const rsHeroSlides = [heroImg1, heroImg2, heroImg3, heroImg4, heroImg5];
-
   const rsHeroTitles = [
     {
       line1: "Find the Right College,",
@@ -60,35 +60,35 @@ const Home = () => {
       category: "Engineering",
       title: "Computer Science",
       desc: "AI, coding and modern software systems.",
-      image: "/src/assets/images/Computer_Science.png",
+      image: "/images/home/Computer_Science.png",
     },
     {
       id: 2,
       category: "Engineering",
       title: "Electronics",
       desc: "Embedded systems and smart hardware.",
-      image: "/src/assets/images/Electrical.png",
+      image: "/images/home/Electrical.png",
     },
     {
       id: 3,
       category: "Engineering",
       title: "Mechanical",
       desc: "Machines, robotics and innovation.",
-      image: "/src/assets/images/Mechanical.png",
+      image: "/images/home/Mechanical.png",
     },
     {
       id: 4,
       category: "Business",
       title: "Management",
       desc: "Leadership, finance and growth strategy.",
-      image: "/src/assets/images/MBA_BusinessAnalytics.png",
+      image: "/images/home/MBA_BusinessAnalytics.png",
     },
     {
       id: 5,
       category: "Healthcare",
       title: "Medical",
       desc: "Healthcare, patient care and medicine.",
-      image: "/src/assets/images/Medical.png",
+      image: "/images/home/medical.png",
     },
   ];
 
@@ -256,7 +256,7 @@ const Home = () => {
             {featuredPrograms.map((item) => (
               <div className="rs-home-program-preview-card" key={item.id}>
                 <div className="rs-home-program-image-wrap">
-                  <img src={item.image} alt={item.title} />
+                  <img src={item.image} alt={item.title} loading="lazy" />
                 </div>
 
                 <div className="rs-home-program-content">
@@ -327,7 +327,7 @@ const Home = () => {
         <section className="rs-home-about rs-home-container">
           <div className="rs-home-about-left">
             <div className="rs-home-about-img-card">
-              <img src={heroImg2} alt="About" />
+              <img src="/images/home/college2.png" alt="About" loading="lazy" />
             </div>
           </div>
 

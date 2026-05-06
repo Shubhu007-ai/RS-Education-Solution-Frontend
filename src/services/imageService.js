@@ -37,7 +37,7 @@ export const fetchGalleryImages = async () => {
 
     return data.photos.map((photo) => ({
       id: photo.id,
-      src: photo.src.large,
+      src: photo.src.medium,
       alt: photo.alt || "College Image",
       photographer: photo.photographer
     }));
