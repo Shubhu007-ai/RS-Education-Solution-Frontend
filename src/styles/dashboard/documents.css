@@ -721,9 +721,7 @@ img {
   }
 
   .rs-file-right {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
+    gap: 10px;
   }
 
   .rs-type-select,
