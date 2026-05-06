@@ -6,7 +6,6 @@ import { googleAuthUser, signupUser } from "../../services/authService";
 import toast from "react-hot-toast";
 import { useUser } from "../../context/UserContext";
 
-
 import {
   FaEye,
   FaEyeSlash,
@@ -53,30 +52,24 @@ export default function Signup() {
 
     if (name === "phone") {
       if (!value) error = "Phone is required";
-      else if (!/^[0-9]{10}$/.test(value))
-        error = "Enter valid 10-digit phone";
+      else if (!/^[0-9]{10}$/.test(value)) error = "Enter valid 10-digit phone";
     }
 
     if (name === "email") {
       if (!value) error = "Email is required";
-      else if (!/\S+@\S+\.\S+/.test(value))
-        error = "Enter valid email";
+      else if (!/\S+@\S+\.\S+/.test(value)) error = "Enter valid email";
     }
 
     if (name === "password") {
       if (!value) error = "Password is required";
-      else if (value.length < 8)
-        error = "Minimum 8 characters required";
-      else if (
-        !/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/.test(value)
-      )
+      else if (value.length < 8) error = "Minimum 8 characters required";
+      else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/.test(value))
         error = "Must include A, a, 1 and @";
     }
 
     if (name === "confirmPassword") {
       if (!value) error = "Confirm your password";
-      else if (value !== formData.password)
-        error = "Passwords do not match";
+      else if (value !== formData.password) error = "Passwords do not match";
     }
 
     setErrors((prev) => ({ ...prev, [name]: error }));
@@ -120,16 +113,16 @@ export default function Signup() {
     });
 
     if (hasError) {
-  const values = Object.values(formData);
+      const values = Object.values(formData);
 
-  if (values.every((val) => !val)) {
-    toast.error("All fields are required");
-  } else {
-    toast.error("Please fix the highlighted fields");
-  }
+      if (values.every((val) => !val)) {
+        toast.error("All fields are required");
+      } else {
+        toast.error("Please fix the highlighted fields");
+      }
 
-  return;
-}
+      return;
+    }
 
     setLoading(true);
 
@@ -152,17 +145,12 @@ export default function Signup() {
   return (
     <div className="rs-signup-container">
       <div className="rs-signup-card">
-
         {/* LEFT */}
         <div className="rs-signup-left">
           <img src="/images/home/signup_bg.png" alt="bg" loading="eager" />
           <div className="rs-signup-overlay">
-            <p className="rs-signup-tagline">
-              WELCOME TO THE EDUCATION WORLD
-            </p>
-            <h2 className="rs-signup-title">
-              R. S Education Solution.
-            </h2>
+            <p className="rs-signup-tagline">WELCOME TO THE EDUCATION WORLD</p>
+            <h2 className="rs-signup-title">R. S Education Solution.</h2>
 
             <div className="rs-signup-badges">
               <div className="rs-signup-badge">10k+ Active Scholars</div>
@@ -179,11 +167,12 @@ export default function Signup() {
           </p>
 
           <form className="rs-signup-form" onSubmit={handleSubmit}>
-
             {/* NAME */}
             <div className="rs-signup-group">
               <label className="rs-signup-label">Full Name</label>
-              <div className={`rs-signup-input ${errors.name ? "rs-signup-input-error" : ""}`}>
+              <div
+                className={`rs-signup-input ${errors.name ? "rs-signup-input-error" : ""}`}
+              >
                 <FaUser />
                 <input
                   ref={nameRef}
@@ -194,15 +183,18 @@ export default function Signup() {
                   onKeyDown={(e) => handleKeyDown(e, "name")}
                 />
               </div>
-              {errors.name && <span className="rs-signup-error-text">{errors.name}</span>}
+              {errors.name && (
+                <span className="rs-signup-error-text">{errors.name}</span>
+              )}
             </div>
 
             {/* PHONE + EMAIL */}
             <div className="rs-signup-row">
-
               <div className="rs-signup-col">
                 <label className="rs-signup-label">Phone Number</label>
-                <div className={`rs-signup-input ${errors.phone ? "rs-signup-input-error" : ""}`}>
+                <div
+                  className={`rs-signup-input ${errors.phone ? "rs-signup-input-error" : ""}`}
+                >
                   <FaPhoneAlt />
                   <input
                     ref={phoneRef}
@@ -213,12 +205,16 @@ export default function Signup() {
                     onKeyDown={(e) => handleKeyDown(e, "phone")}
                   />
                 </div>
-                {errors.phone && <span className="rs-signup-error-text">{errors.phone}</span>}
+                {errors.phone && (
+                  <span className="rs-signup-error-text">{errors.phone}</span>
+                )}
               </div>
 
               <div className="rs-signup-col">
                 <label className="rs-signup-label">Email Address</label>
-                <div className={`rs-signup-input ${errors.email ? "rs-signup-input-error" : ""}`}>
+                <div
+                  className={`rs-signup-input ${errors.email ? "rs-signup-input-error" : ""}`}
+                >
                   <FaEnvelope />
                   <input
                     ref={emailRef}
@@ -229,15 +225,18 @@ export default function Signup() {
                     onKeyDown={(e) => handleKeyDown(e, "email")}
                   />
                 </div>
-                {errors.email && <span className="rs-signup-error-text">{errors.email}</span>}
+                {errors.email && (
+                  <span className="rs-signup-error-text">{errors.email}</span>
+                )}
               </div>
-
             </div>
 
             {/* PASSWORD */}
             <div className="rs-signup-group">
               <label className="rs-signup-label">Password</label>
-              <div className={`rs-signup-input ${errors.password ? "rs-signup-input-error" : ""}`}>
+              <div
+                className={`rs-signup-input ${errors.password ? "rs-signup-input-error" : ""}`}
+              >
                 <FaLock />
                 <input
                   ref={passwordRef}
@@ -256,13 +255,17 @@ export default function Signup() {
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
               </div>
-              {errors.password && <span className="rs-signup-error-text">{errors.password}</span>}
+              {errors.password && (
+                <span className="rs-signup-error-text">{errors.password}</span>
+              )}
             </div>
 
             {/* CONFIRM PASSWORD */}
             <div className="rs-signup-group">
               <label className="rs-signup-label">Confirm Password</label>
-              <div className={`rs-signup-input ${errors.confirmPassword ? "rs-signup-input-error" : ""}`}>
+              <div
+                className={`rs-signup-input ${errors.confirmPassword ? "rs-signup-input-error" : ""}`}
+              >
                 <FaLock />
                 <input
                   ref={confirmPasswordRef}
@@ -276,11 +279,8 @@ export default function Signup() {
                 <button
                   type="button"
                   className="rs-signup-eye-btn"
-                  onClick={() =>
-                    setShowConfirmPassword(!showConfirmPassword)
-                  }
-                >
-                </button>
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                ></button>
               </div>
               {errors.confirmPassword && (
                 <span className="rs-signup-error-text">
@@ -299,9 +299,7 @@ export default function Signup() {
             </button>
 
             {/* DIVIDER */}
-            <div className="rs-signup-divider">
-              OR CONTINUE WITH
-            </div>
+            <div className="rs-signup-divider">OR CONTINUE WITH</div>
 
             {/* GOOGLE */}
             <div className="rs-signup-google-wrapper">
@@ -320,13 +318,19 @@ export default function Signup() {
                         },
                       });
                     } else {
-                      localStorage.setItem("token", res.data.token);
+                      localStorage.setItem("token", data.data.token);
+
+                      localStorage.setItem(
+                        "user",
+                        JSON.stringify(data.data.user),
+                      );
 
                       await loginUserContext();
 
                       navigate("/");
                     }
                   } catch {
+                    console.log(err.response?.data || err);
                     toast.error("Email Already Exists! Try Logging In.");
                     navigate("/login");
                   }
@@ -339,7 +343,6 @@ export default function Signup() {
             <p className="rs-signup-footer-text">
               Already have an account? <Link to="/login">Log In</Link>
             </p>
-
           </form>
         </div>
       </div>
