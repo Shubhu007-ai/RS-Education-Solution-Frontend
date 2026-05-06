@@ -131,14 +131,10 @@
 
 /* BOTTOM */
 .footer-bottom {
-  display: flex;
-  justify-content: center;
-  gap: 2em;
   text-align: center;
-  margin-top: 30px;
   font-size: 14px;
-  font-weight: 600;
   color: #6b6b6b;
+  margin-top: 20px;
 }
 
 .footer-bottom a {
@@ -150,6 +146,14 @@
 .footer-bottom a:hover {
   color: #8a5a3b;
   text-decoration: underline;
+}
+
+.legal-link {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 /* RESPONSIVE */
@@ -188,5 +192,22 @@
   }
   .newsletter {
     height: 6vh;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-bottom {
+    font-size: 12px;
+  }
+  .legal-link {
+    gap: 5px;
+  }
+
+  .footer-center h3 {
+    margin-bottom: 10px;
+  }
+
+  .footer-right p {
+    display: none;
   }
 }

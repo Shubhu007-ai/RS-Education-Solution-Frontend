@@ -86,11 +86,12 @@ export default function Footer() {
 
       <div className="footer-bottom">
         © {currentYear} R. S Education Solution. All rights reserved.
-    
+    <div className="legal-link">
         <Link to="/terms">Terms & Conditions</Link>
         <Link to="/privacy">Privacy Policy</Link>
         <Link to="/disclaimer">Disclaimer</Link>
         <Link to="/contact">Contact & Support</Link>
+      </div>
       </div>
       {showModal && (
         <InterestModal email={email} onClose={() => setShowModal(false)} />
