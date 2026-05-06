@@ -5,7 +5,6 @@ import ServiceDetailModal from "../components/services/ServiceDetailModal";
 import BookCallModal from "../components/dashboard/BookCallModal";
 import { servicesData } from "../data/servicesData";
 import { useNavigate } from "react-router-dom";
-import serviceRight from "../assets/images/service_right2.png";
 
 export default function Services() {
   /* =========================
@@ -26,11 +25,11 @@ export default function Services() {
    REAL LOADING (STATIC DATA)
 ========================= */
   useEffect(() => {
-  // simulate loading
-  setTimeout(() => {
-    setRsServicesLoading(false);
-  }, 100);
-}, []);
+    // simulate loading
+    setTimeout(() => {
+      setRsServicesLoading(false);
+    }, 100);
+  }, []);
 
   /* =========================
      SCROLL ANIMATION
@@ -94,14 +93,18 @@ export default function Services() {
               {rsServicesLoading ? (
                 <div className="rs-services-skeleton-hero-img"></div>
               ) : (
-                <img src={serviceRight} alt="Career Services" />
+                <img
+                  src="/images/home/service_right2.png"
+                  alt="Career Services"
+                  loading="eager"
+                />
               )}
             </div>
           </div>
         </section>
 
         {/* SERVICES GRID */}
-       {/* SERVICES GRID */}
+        {/* SERVICES GRID */}
         <section className="services-grid">
           {rsServicesLoading
             ? Array(6)
@@ -120,9 +123,9 @@ export default function Services() {
             : servicesData.map((service) => (
                 <div className="service-card fade-up" key={service.id}>
                   <div className="service-top">
-                  <div className="icon">{service.icon}</div>
-                  <h3>{service.title}</h3>
-                  <p>{service.desc}</p>
+                    <div className="icon">{service.icon}</div>
+                    <h3>{service.title}</h3>
+                    <p>{service.desc}</p>
                   </div>
                   <button
                     className="primary"
@@ -196,8 +199,9 @@ export default function Services() {
                   <div className="rs-services-skeleton-cta-img"></div>
                 ) : (
                   <img
-                    src="/src/assets/images/Services_blog.png"
+                    src="/images/home/Services_blog.png"
                     alt="Students discussion"
+                    loading="lazy"
                   />
                 )}
               </div>

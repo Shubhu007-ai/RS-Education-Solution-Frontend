@@ -1,6 +1,5 @@
 import "../../src/styles/pages/contact.css";
 import { FaPhoneAlt, FaWhatsapp, FaEnvelope, FaStore } from "react-icons/fa";
-import ContactBG from "/src/assets/images/contact_bg.png";
 import Footer from "/src/components/layout/Footer";
 import toast from "react-hot-toast";
 import { useState, useEffect } from "react";
@@ -96,7 +95,7 @@ export default function Contact() {
         )}
 
         <div className="rs-contact-bg">
-          <img src={ContactBG} alt="background" />
+          <img src="/images/home/contact_bg.png" alt="background" loading="eager" />
         </div>
       </section>
 
