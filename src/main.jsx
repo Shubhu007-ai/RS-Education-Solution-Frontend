@@ -15,39 +15,34 @@ import "./styles/global.css";
 import { UserProvider } from "./context/UserContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
 
-    {/* 🔥 GOOGLE PROVIDER */}
-    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
 
-      <BrowserRouter>
+  <BrowserRouter>
 
-      <UserProvider>
+    <UserProvider>
 
-        {/* 🔔 Toast Provider */}
-        <Toaster
-          position="top-center"
-          toastOptions={{
-            style: {
-              background: "#f5dcca",
-              color: "#000000",
-              borderRadius: "10px",
-              padding: "12px 16px",
-              fontSize: "13px",
-              marginTop: "65px",
-              zIndex: 2000000,
-            },
-          }}
-        />
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: {
+            background: "#f5dcca",
+            color: "#000000",
+            borderRadius: "10px",
+            padding: "12px 16px",
+            fontSize: "13px",
+            marginTop: "65px",
+            zIndex: 2000000,
+          },
+        }}
+      />
 
-        {/* 🔹 Main App */}
-        <App />
+      <App />
 
-      </UserProvider>
+    </UserProvider>
 
-      </BrowserRouter>
+  </BrowserRouter>
 
-    </GoogleOAuthProvider>
-
-  </React.StrictMode>
+</GoogleOAuthProvider>
+  
 );

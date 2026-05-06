@@ -103,6 +103,7 @@ export default function Login() {
 
       navigate("/");
     } catch (err) {
+      console.log(err.response?.data || err);
       const errorData = err.response?.data;
 
       if (errorData?.isVerified === false) {
@@ -165,6 +166,7 @@ export default function Login() {
       // ❌ fallback
       toast.error("Something went wrong. Try again.");
     } catch (err) {
+      console.log(err.response?.data || err);
       const errorData = err.response?.data;
 
       // ❗ NOT VERIFIED
