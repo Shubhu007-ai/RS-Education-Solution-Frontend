@@ -69,7 +69,7 @@ export default function Documents() {
       setUploading(true);
       setUploadProgress(0);
 
-      await axios.get(`${import.meta.env.VITE_API_BASE_URL}upload`, formData, {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}upload`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
