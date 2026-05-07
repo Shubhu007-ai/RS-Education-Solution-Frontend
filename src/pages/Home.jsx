@@ -34,26 +34,26 @@ const rsHeroSlides = [
   "/images/home/college5.png",
 ];
 
-const Home = () => {
-  const rsHeroTitles = [
-    {
-      line1: "Find the Right College,",
-      line2: "Course & Future",
-    },
-    {
-      line1: "Choose the Best University,",
-      line2: "Dream & Success",
-    },
-    {
-      line1: "Discover Smart Programs,",
-      line2: "Skills & Growth",
-    },
-    {
-      line1: "Build Your Bright Career,",
-      line2: "Goals & Future",
-    },
-  ];
+const rsHeroTitles = [
+  {
+    line1: "Find the Right College,",
+    line2: "Course & Future",
+  },
+  {
+    line1: "Choose the Best University,",
+    line2: "Dream & Success",
+  },
+  {
+    line1: "Discover Smart Programs,",
+    line2: "Skills & Growth",
+  },
+  {
+    line1: "Build Your Bright Career,",
+    line2: "Goals & Future",
+  },
+];
 
+const Home = () => {
   const featuredPrograms = [
     {
       id: 1,
@@ -99,15 +99,15 @@ const Home = () => {
 
   /* Add inside useEffect section */
 
-  useEffect(() => {
-    const titleTimer = setInterval(() => {
-      setRsTitleIndex((prev) =>
-        prev === rsHeroTitles.length - 1 ? 0 : prev + 1,
-      );
-    }, 5600);
+useEffect(() => {
+  const titleTimer = setInterval(() => {
+    setRsTitleIndex((prev) =>
+      prev === rsHeroTitles.length - 1 ? 0 : prev + 1
+    );
+  }, 4000);
 
-    return () => clearInterval(titleTimer);
-  });
+  return () => clearInterval(titleTimer);
+}, []);
 
   /* HERO ANIMATION */
   useEffect(() => {
