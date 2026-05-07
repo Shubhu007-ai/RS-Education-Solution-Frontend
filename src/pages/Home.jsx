@@ -129,7 +129,7 @@ useEffect(() => {
     }, 4000);
 
     return () => clearInterval(slider);
-  }, [rsHeroMode, rsHeroSlides.length]);
+  }, [rsHeroMode]);
 
   return (
     <div className="rs-home-wrapper">
