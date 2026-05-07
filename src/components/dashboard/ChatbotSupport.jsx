@@ -62,6 +62,19 @@ const ChatbotSupport = ({ onClose, mode = "modal" }) => {
     };
   }, []);
 
+  /* Load available voices */
+useEffect(() => {
+  const loadVoices = () => {
+    window.speechSynthesis.getVoices();
+  };
+
+  loadVoices();
+
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+  }
+}, []);
+
   useEffect(() => {
     if (mode !== "widget") return;
 
@@ -99,18 +112,46 @@ const ChatbotSupport = ({ onClose, mode = "modal" }) => {
     );
   };
 
-  const speakText = (text) => {
-    if (!("speechSynthesis" in window) || !isSpeaking) return;
+const speakText = (text) => {
+  if (!("speechSynthesis" in window) || !isSpeaking) return;
 
-    const cleanText = cleanTextForSpeech(text);
+  const cleanText = cleanTextForSpeech(text);
 
-    const utterance = new SpeechSynthesisUtterance(cleanText);
-    utterance.lang = "en-US";
-    utterance.rate = 1;
+  // stop old speech
+  window.speechSynthesis.cancel();
 
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utterance);
-  };
+  const utterance = new SpeechSynthesisUtterance(cleanText);
+
+  // voice settings
+  utterance.lang = "en-US";
+  utterance.rate = 0.9;
+  utterance.pitch = 1.1;
+  utterance.volume = 1;
+
+  // available voices
+  const voices = window.speechSynthesis.getVoices();
+
+  // choose female voice
+  const femaleVoice =
+    voices.find((voice) =>
+      voice.name.includes("Google UK English Female"),
+    ) ||
+    voices.find((voice) =>
+      voice.name.includes("Microsoft Zira"),
+    ) ||
+    voices.find((voice) =>
+      voice.name.includes("Samantha"),
+    ) ||
+    voices.find((voice) =>
+      voice.name.toLowerCase().includes("female"),
+    );
+
+  if (femaleVoice) {
+    utterance.voice = femaleVoice;
+  }
+
+  window.speechSynthesis.speak(utterance);
+};
 
   /* Speech Recognition */
   useEffect(() => {
