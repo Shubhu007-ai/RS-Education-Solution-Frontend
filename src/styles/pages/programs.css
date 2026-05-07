@@ -64,7 +64,7 @@
 .rs-program-btn {
   border: none;
   cursor: pointer;
-      padding: 15px 20px;
+  padding: 15px 20px;
   border-radius: 999px;
   font-size: 15px;
   font-weight: 600;
@@ -629,7 +629,6 @@
 }
 
 @media (max-width: 645px) {
-
   .rs-program-hero {
     margin-bottom: 20px;
   }
@@ -643,19 +642,24 @@
 
   .rs-program-card-title {
     margin-bottom: 0px;
+    min-height: 45px;
+    font-size: 14px;
   }
 
   .rs-program-card-desc {
     margin-bottom: 5px;
+    font-size: 12px;
   }
 
   .rs-program-card-btn {
-    padding:10px 20px;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 200;
   }
 
   .rs-program-title {
     font-size: 1.2em;
-    margin-bottom:10px;
+    margin-bottom: 10px;
   }
 
   .rs-program-desc {
@@ -666,15 +670,14 @@
   .rs-program-hero-right img {
     max-width: 200px;
   }
-  
+
   .rs-program-btn-secondary,
   .rs-program-btn-primary {
     padding: 8px 20px;
   }
 
-
   .rs-program-section-title {
-    font-size: 22px;
+    font-size: 16px;
   }
 
   .rs-program-philosophy {
@@ -692,16 +695,21 @@
   }
 
   .rs-program-philo-content h2 {
-    font-size: 1.2em;
+    font-size: 1em;
     margin-bottom: 10px;
   }
 
   .rs-program-philo-content p {
-    font-size: 0.8em;
+    font-size: 0.7em;
+    line-height: 1.5;
   }
 
   .rs-program-stats h3 {
     font-size: 0.9em;
+  }
+
+  .rs-program-stats span {
+    font-size: 11px;
   }
 
   .rs-program-stats {
@@ -709,18 +717,18 @@
     margin-top: 5px;
   }
   .rs-program-hero-left {
-  max-width: 40vw;
-}
-    .rs-program-hero {
-        gap: 0px;
-    }
+    max-width: 40vw;
+  }
+  .rs-program-hero {
+    gap: 0px;
+  }
 }
 
 @media (max-width: 530px) {
   .rs-program-hero-right img {
     max-width: 145px;
   }
-  .rs-program-badge{
+  .rs-program-badge {
     display: none;
   }
   .rs-program-btn {
@@ -728,7 +736,7 @@
   }
 }
 
-@media (max-width: 376px){
+@media (max-width: 376px) {
   .rs-program-hero-right img {
     max-width: 125px;
   }
