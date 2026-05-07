@@ -218,7 +218,7 @@ useEffect(() => {
 
             <div className="rs-home-hero-mini-stats">
               <div>⭐ 4.9 Rating</div>
-              <div>🎓 5000+ Students</div>
+              <div>🎓 1500+ Colleges</div>
               <div>💰 1200+ Scholarships</div>
             </div>
           </div>

@@ -53,7 +53,6 @@ export default function Navbar() {
         <div className="nav-right">
           {user ? (
             <>
-
               <button className="btn-primary" onClick={handleLogout}>
                 Logout
               </button>
@@ -104,7 +103,11 @@ export default function Navbar() {
               Find College
             </NavLink>
 
-             {user?.role === "admin" && <NavLink to="/admin" onClick={closeMenu} >Admin</NavLink>}
+            {user?.role === "admin" && (
+              <NavLink to="/admin" onClick={closeMenu}>
+                Admin
+              </NavLink>
+            )}
           </div>
 
           <div className="drawer-actions">
@@ -112,7 +115,13 @@ export default function Navbar() {
               <>
                 <span className="rs-user-name">{user?.name || "User"}</span>
 
-                <button className="btn-primary" onClick={handleLogout}>
+                <button
+                  className="btn-primary"
+                  onClick={() => {
+                    handleLogout();
+                    closeMenu();
+                  }}
+                >
                   Logout
                 </button>
               </>
