@@ -4,9 +4,9 @@ import "../../styles/layout/footer.css";
 import {
   FaFacebookF,
   FaInstagram,
-  FaXTwitter,
   FaWhatsapp,
 } from "react-icons/fa";
+import { FaXTwitter } from 'react-icons/fa6';
 import { Link } from "react-router-dom";
 
 export default function Footer() {
