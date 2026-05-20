@@ -3,7 +3,6 @@
 import { useMemo, useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import SEO from "../components/seo/SEO";
-import collegeData from "../data/colleges.json";
 
 import FindCollegeHeroSec from "../components/findCollege/FindCollegeHeroSec";
 import CollegeFilters from "../components/findCollege/CollegeFilters";
@@ -18,6 +17,10 @@ import sortColleges from "../utils/sortColleges";
 import parseSearchQuery from "../utils/parseSearchQuery";
 
 const FindCollege = () => {
+  const [collegeData, setCollegeData] = useState([]);
+
+  const [loadingColleges, setLoadingColleges] = useState(true);
+
   const location = useLocation();
 
   const resultsRef = useRef(null);
@@ -97,6 +100,24 @@ const FindCollege = () => {
     }
   }, [location]);
 
+  useEffect(() => {
+    const fetchColleges = async () => {
+      try {
+        const response = await fetch("/data/colleges.json");
+
+        const data = await response.json();
+
+        setCollegeData(data);
+      } catch (error) {
+        console.error("Failed to load colleges:", error);
+      } finally {
+        setLoadingColleges(false);
+      }
+    };
+
+    fetchColleges();
+  }, []);
+
   const cardsPerPage = 12;
 
   /* =========================
@@ -105,7 +126,7 @@ const FindCollege = () => {
 
   const colleges = useMemo(() => {
     return collegeData.colleges || [];
-  }, []);
+  }, [collegeData]);
 
   /* FILTER */
   const filteredColleges = useMemo(() => {
@@ -164,6 +185,11 @@ const FindCollege = () => {
     setCompareItems([]);
     setShowCompareResult(false);
   };
+  
+  if (loadingColleges) {
+    return <div className="rs-loader">Loading colleges...</div>;
+  }
+
 
   /* =========================
      UI
@@ -182,6 +208,7 @@ const FindCollege = () => {
         <FindCollegeHeroSec />
         <div ref={resultsRef}>
           <CollegeFilters
+            colleges={collegeData.colleges || []}
             filters={filters}
             setFilters={(value) => {
               setCurrentPage(1);

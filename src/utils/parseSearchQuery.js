@@ -18,7 +18,7 @@ const parseSearchQuery = (
     lower.includes("btech") ||
     lower.includes("b.tech")
   ) {
-    parsed.course = "";
+    parsed.course = "B.Tech";
   }
 
   else if (

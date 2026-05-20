@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/pages/home.css";
 import Footer from "../../src/components/layout/Footer";
@@ -6,7 +6,6 @@ import OurPartner from "../components/layout/OurPartner";
 import SuccessStories from "../components/layout/SuccessStories";
 import TopCollegesSection from "../components/home/TopCollegesSection";
 import TopStudyPlaces from "../components/home/TopStudyPlaces";
-import collegesData from "../data/colleges.json";
 import { FaMoneyBillWave, FaHeadphones, FaStar } from "react-icons/fa6";
 import SEO from "../components/seo/SEO";
 import {
@@ -125,52 +124,64 @@ const Home = () => {
   const [rsTitleIndex, setRsTitleIndex] = useState(0);
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
+  const [collegesData, setCollegesData] = useState({
+    colleges: [],
+  });
   const [activeSuggestion, setActiveSuggestion] = useState(-1);
   const suggestionRefs = useRef([]);
-  const suggestions = [
-    /* COLLEGE NAMES */
-    ...collegesData.colleges.map((college) => college.name),
+  const suggestions = useMemo(() => {
+    const colleges = collegesData?.colleges || [];
 
-    /* CITIES */
-    ...collegesData.colleges.map((college) => college.city),
+    return [
+      ...new Set([
+        ...colleges.map((college) => college.name),
 
-    /* STATES */
-    ...collegesData.colleges.map((college) => college.state),
+        ...colleges.map((college) => college.city),
 
-    /* COURSES */
-    ...collegesData.colleges.flatMap((college) => college.courses || []),
+        ...colleges.map((college) => college.state),
 
-    /* BRANCHES */
-    ...collegesData.colleges.flatMap((college) => college.branches || []),
-  ];
+        ...colleges.flatMap((college) => college.courses || []),
 
-  const filteredSuggestions = searchQuery.trim()
-    ? [
-        ...new Set(
-          suggestions
-            .filter(
-              (item) =>
-                item && item.toLowerCase().includes(searchQuery.toLowerCase()),
-            )
+        ...colleges.flatMap((college) => college.branches || []),
+      ]),
+    ].filter(Boolean);
+  }, [collegesData]);
 
-            .sort((a, b) => {
-              const aStarts = a
-                .toLowerCase()
-                .startsWith(searchQuery.toLowerCase());
+  const filteredSuggestions = useMemo(() => {
+    if (!searchQuery.trim()) return [];
 
-              const bStarts = b
-                .toLowerCase()
-                .startsWith(searchQuery.toLowerCase());
+    const query = searchQuery.toLowerCase().trim();
 
-              if (aStarts && !bStarts) return -1;
+    const queryWords = query.split(" ");
 
-              if (!aStarts && bStarts) return 1;
+    return [
+      ...new Set(
+        suggestions.filter((item) => {
+          if (!item) return false;
 
-              return a.length - b.length;
-            }),
-        ),
-      ]
-    : [];
+          const lowerItem = item.toLowerCase();
+
+          return queryWords.every((word) => lowerItem.includes(word));
+        }),
+      ),
+    ]
+      .sort((a, b) => {
+        const aLower = a.toLowerCase();
+
+        const bLower = b.toLowerCase();
+
+        const aStarts = aLower.startsWith(query);
+
+        const bStarts = bLower.startsWith(query);
+
+        if (aStarts && !bStarts) return -1;
+
+        if (!aStarts && bStarts) return 1;
+
+        return a.length - b.length;
+      })
+      .slice(0, 8);
+  }, [searchQuery, suggestions]);
 
   const handleSearch = () => {
     if (!searchQuery.trim()) return;
@@ -186,6 +197,26 @@ const Home = () => {
       });
     }
   }, [activeSuggestion]);
+
+  useEffect(() => {
+    setActiveSuggestion(-1);
+  }, [searchQuery]);
+
+  useEffect(() => {
+    const fetchCollegesData = async () => {
+      try {
+        const response = await fetch("/data/colleges.json");
+
+        const data = await response.json();
+
+        setCollegesData(data);
+      } catch (error) {
+        console.error("Failed to load colleges data:", error);
+      }
+    };
+
+    fetchCollegesData();
+  }, []);
 
   useEffect(() => {
     const titleTimer = setInterval(() => {
