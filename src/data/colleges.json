@@ -17775,6 +17775,908 @@
       ],
       "description": "Private engineering college in Palwal. Approved by AICTE. Affiliated to JC Bose University YMCA Faridabad. Offers B.Tech, M.Tech, MBA and diploma courses. Hostel facilities available for outstation students. Good placement support.",
       "id": 379
+    },
+    {
+      "id": 380,
+      "name": "Gurukul Kangri Vishwavidyalaya (GKV), Haridwar",
+      "state": "Uttarakhand",
+      "city": "Haridwar",
+      "type": "GFTI (Central University)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "B.Sc",
+        "M.Sc",
+        "Ph.D",
+        "MBA"
+      ],
+      "branches": [
+        "Computer Science",
+        "Electronics & Communication",
+        "Mechanical",
+        "Civil",
+        "Electrical",
+        "Chemical"
+      ],
+      "fees_per_year": 85000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 60000,
+        "obc": 80000,
+        "sc": 120000,
+        "st": 150000
+      },
+      "placement_avg_lpa": 5.5,
+      "placement_highest_lpa": 18,
+      "hostel": true,
+      "naac_grade": "A",
+      "website": "www.gkv.ac.in",
+      "contact": "01334-240112",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Sports Ground",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi",
+        "Temple Campus"
+      ],
+      "description": "One of India's oldest universities established in 1902. GFTI under JoSAA/CSAB counselling. Located on the banks of Ganga in Haridwar. Strong in engineering and sciences with a unique heritage campus."
+    },
+    {
+      "id": 381,
+      "name": "Guru Ghasidas Vishwavidyalaya (GGV), Bilaspur",
+      "state": "Chhattisgarh",
+      "city": "Bilaspur",
+      "type": "GFTI (Central University)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "B.Sc",
+        "M.Sc",
+        "MBA",
+        "Ph.D"
+      ],
+      "branches": [
+        "Computer Science",
+        "Electronics & Communication",
+        "Mechanical",
+        "Civil",
+        "Electrical",
+        "Chemical",
+        "IT"
+      ],
+      "fees_per_year": 75000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 75000,
+        "obc": 100000,
+        "sc": 140000,
+        "st": 180000
+      },
+      "placement_avg_lpa": 5.0,
+      "placement_highest_lpa": 15,
+      "hostel": true,
+      "naac_grade": "A",
+      "website": "www.ggu.ac.in",
+      "contact": "07752-260209",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Sports Complex",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi",
+        "Health Centre"
+      ],
+      "description": "Central University in Bilaspur, Chhattisgarh. GFTI under JoSAA/CSAB. Established as Central University in 2009. Offers B.Tech programs in multiple disciplines with affordable fees and good campus life."
+    },
+    {
+      "id": 382,
+      "name": "Chhattisgarh Swami Vivekanand Technical University (CSVTU), Bhilai",
+      "state": "Chhattisgarh",
+      "city": "Bhilai",
+      "type": "GFTI (State Technical University)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "MCA",
+        "MBA",
+        "Ph.D"
+      ],
+      "branches": [
+        "Computer Science",
+        "Electronics & Communication",
+        "Mechanical",
+        "Civil",
+        "Electrical",
+        "Chemical",
+        "Mining"
+      ],
+      "fees_per_year": 70000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 90000,
+        "obc": 120000,
+        "sc": 160000,
+        "st": 200000
+      },
+      "placement_avg_lpa": 4.5,
+      "placement_highest_lpa": 12,
+      "hostel": true,
+      "naac_grade": "B+",
+      "website": "www.csvtu.ac.in",
+      "contact": "0788-2331200",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Sports Ground",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi"
+      ],
+      "description": "Technical university of Chhattisgarh participating in JoSAA/CSAB as GFTI. Located near Bhilai Steel Plant area. Offers B.Tech programs in engineering disciplines with industry-relevant curriculum."
+    },
+    {
+      "id": 383,
+      "name": "Assam University (AU), Silchar",
+      "state": "Assam",
+      "city": "Silchar",
+      "type": "GFTI (Central University)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "B.Sc",
+        "M.Sc",
+        "MBA",
+        "Ph.D"
+      ],
+      "branches": [
+        "Computer Science",
+        "Electronics & Communication",
+        "Civil",
+        "Electrical",
+        "Mechanical",
+        "IT"
+      ],
+      "fees_per_year": 72000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 80000,
+        "obc": 110000,
+        "sc": 150000,
+        "st": 190000
+      },
+      "placement_avg_lpa": 5.0,
+      "placement_highest_lpa": 14,
+      "hostel": true,
+      "naac_grade": "A",
+      "website": "www.aus.ac.in",
+      "contact": "03842-270806",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Sports Complex",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi",
+        "Health Centre",
+        "Bank"
+      ],
+      "description": "Central University in Silchar, Assam. GFTI under JoSAA/CSAB. Established in 1994, serves the Barak Valley region. Offers B.Tech through School of Technology with good research facilities."
+    },
+    {
+      "id": 384,
+      "name": "Tezpur University (TU), Tezpur",
+      "state": "Assam",
+      "city": "Tezpur",
+      "type": "GFTI (Central University)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "B.Sc",
+        "M.Sc",
+        "MBA",
+        "Ph.D"
+      ],
+      "branches": [
+        "Computer Science",
+        "Electronics & Communication",
+        "Civil",
+        "Electrical",
+        "Mechanical",
+        "Chemical",
+        "Food Technology"
+      ],
+      "fees_per_year": 80000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 55000,
+        "obc": 75000,
+        "sc": 110000,
+        "st": 140000
+      },
+      "placement_avg_lpa": 6.5,
+      "placement_highest_lpa": 22,
+      "hostel": true,
+      "naac_grade": "A+",
+      "website": "www.tezu.ernet.in",
+      "contact": "03712-267007",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Sports Complex",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi",
+        "Health Centre",
+        "Research Parks"
+      ],
+      "description": "Premier Central University in Tezpur, Assam. GFTI under JoSAA/CSAB. NAAC A+ accredited. Known for research excellence in NE India. Scenic campus on the banks of Brahmaputra with strong placement record."
+    },
+    {
+      "id": 385,
+      "name": "Shri Mata Vaishno Devi University (SMVDU), Katra",
+      "state": "Jammu & Kashmir",
+      "city": "Katra",
+      "type": "GFTI (Deemed University)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "B.Arch",
+        "M.Sc",
+        "Ph.D"
+      ],
+      "branches": [
+        "Computer Science",
+        "Electronics & Communication",
+        "Mechanical",
+        "Civil",
+        "Biotechnology",
+        "Chemical",
+        "Architecture"
+      ],
+      "fees_per_year": 100000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 45000,
+        "obc": 65000,
+        "sc": 100000,
+        "st": 130000
+      },
+      "placement_avg_lpa": 7.0,
+      "placement_highest_lpa": 28,
+      "hostel": true,
+      "naac_grade": "A",
+      "website": "www.smvdu.ac.in",
+      "contact": "01991-285524",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Sports Complex",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi",
+        "Health Centre",
+        "Amphitheatre"
+      ],
+      "description": "Deemed University near Vaishno Devi shrine, Katra, J&K. GFTI under JoSAA/CSAB. Scenic Himalayan campus with modern infrastructure. Strong B.Tech programs with good placements. One of the best GFTIs in J&K."
+    },
+    {
+      "id": 386,
+      "name": "Central University of Rajasthan (CURAJ), Ajmer",
+      "state": "Rajasthan",
+      "city": "Ajmer",
+      "type": "GFTI (Central University)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "B.Sc",
+        "M.Sc",
+        "Ph.D"
+      ],
+      "branches": [
+        "Computer Science",
+        "Electronics & Communication",
+        "Electrical",
+        "Civil",
+        "Chemical",
+        "Biotechnology"
+      ],
+      "fees_per_year": 78000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 70000,
+        "obc": 95000,
+        "sc": 135000,
+        "st": 170000
+      },
+      "placement_avg_lpa": 5.5,
+      "placement_highest_lpa": 16,
+      "hostel": true,
+      "naac_grade": "A",
+      "website": "www.curaj.ac.in",
+      "contact": "01463-238976",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Sports Ground",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi",
+        "Health Centre"
+      ],
+      "description": "Central University of Rajasthan located in Bandarsindri, Ajmer district. GFTI under JoSAA/CSAB. Established in 2009. Offers B.Tech in multiple engineering branches with affordable government fees."
+    },
+    {
+      "id": 387,
+      "name": "Central University of Jammu (CUJ), Jammu",
+      "state": "Jammu & Kashmir",
+      "city": "Jammu",
+      "type": "GFTI (Central University)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "B.Sc",
+        "M.Sc",
+        "Ph.D"
+      ],
+      "branches": [
+        "Computer Science",
+        "Electronics & Communication",
+        "Civil",
+        "Electrical",
+        "Mechanical"
+      ],
+      "fees_per_year": 72000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 85000,
+        "obc": 115000,
+        "sc": 155000,
+        "st": 195000
+      },
+      "placement_avg_lpa": 4.5,
+      "placement_highest_lpa": 12,
+      "hostel": true,
+      "naac_grade": "B+",
+      "website": "www.cujammu.ac.in",
+      "contact": "01923-234567",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi",
+        "Sports Ground"
+      ],
+      "description": "Central University of Jammu, J&K. GFTI under JoSAA/CSAB. Established in 2011. Offers B.Tech programs in engineering. Centrally funded with affordable fees and developing infrastructure."
+    },
+    {
+      "id": 388,
+      "name": "Central University of Haryana (CUH), Mahendergarh",
+      "state": "Haryana",
+      "city": "Mahendergarh",
+      "type": "GFTI (Central University)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "B.Sc",
+        "M.Sc",
+        "Ph.D",
+        "MBA"
+      ],
+      "branches": [
+        "Computer Science",
+        "Electronics & Communication",
+        "Electrical",
+        "Civil",
+        "Mechanical"
+      ],
+      "fees_per_year": 76000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 80000,
+        "obc": 105000,
+        "sc": 145000,
+        "st": 185000
+      },
+      "placement_avg_lpa": 5.0,
+      "placement_highest_lpa": 14,
+      "hostel": true,
+      "naac_grade": "B+",
+      "website": "www.cuh.ac.in",
+      "contact": "01285-257524",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Sports Ground",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi",
+        "Health Centre"
+      ],
+      "description": "Central University of Haryana located in Jant-Pali, Mahendergarh. GFTI under JoSAA/CSAB. Established in 2009. Offers B.Tech programs with centrally funded affordable education. Developing into a vibrant academic campus."
+    },
+    {
+      "id": 389,
+      "name": "Dr. Harisingh Gour Vishwavidyalaya (DHSGV), Sagar",
+      "state": "Madhya Pradesh",
+      "city": "Sagar",
+      "type": "GFTI (Central University)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "B.Sc",
+        "M.Sc",
+        "MBA",
+        "LLB",
+        "Ph.D"
+      ],
+      "branches": [
+        "Computer Science",
+        "Electronics & Communication",
+        "Mechanical",
+        "Civil",
+        "Electrical",
+        "Chemical",
+        "IT"
+      ],
+      "fees_per_year": 70000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 78000,
+        "obc": 105000,
+        "sc": 145000,
+        "st": 180000
+      },
+      "placement_avg_lpa": 5.0,
+      "placement_highest_lpa": 15,
+      "hostel": true,
+      "naac_grade": "A",
+      "website": "www.dhsgsu.ac.in",
+      "contact": "07582-264524",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Sports Complex",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi",
+        "Health Centre",
+        "Bank"
+      ],
+      "description": "One of central India's oldest universities, established in 1946 in Sagar, MP. GFTI under JoSAA/CSAB. Converted to Central University in 2009. Strong tradition of science and engineering education."
+    },
+    {
+      "id": 390,
+      "name": "Puducherry Technological University (PTU), Puducherry",
+      "state": "Puducherry",
+      "city": "Puducherry",
+      "type": "GFTI (State Technical University)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "MCA",
+        "MBA",
+        "Ph.D"
+      ],
+      "branches": [
+        "Computer Science",
+        "Electronics & Communication",
+        "Mechanical",
+        "Civil",
+        "Electrical",
+        "IT",
+        "Chemical"
+      ],
+      "fees_per_year": 82000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 65000,
+        "obc": 88000,
+        "sc": 125000,
+        "st": 160000
+      },
+      "placement_avg_lpa": 6.0,
+      "placement_highest_lpa": 20,
+      "hostel": true,
+      "naac_grade": "A",
+      "website": "www.pec.edu",
+      "contact": "0413-2655281",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Sports Complex",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi",
+        "Health Centre",
+        "Research Centre"
+      ],
+      "description": "Formerly Pondicherry Engineering College, now Puducherry Technological University. GFTI under JoSAA/CSAB. Established in 1984. One of the oldest and most reputed engineering institutions in South India with strong placement record."
+    },
+    {
+      "id": 391,
+      "name": "Ghani Khan Choudhury Institute of Engineering & Technology (GKCIET), Malda",
+      "state": "West Bengal",
+      "city": "Malda",
+      "type": "GFTI (Central Government Institute)",
+      "courses": [
+        "B.Tech",
+        "M.Tech"
+      ],
+      "branches": [
+        "Computer Science",
+        "Electronics & Communication",
+        "Mechanical",
+        "Civil",
+        "Electrical",
+        "Food Technology"
+      ],
+      "fees_per_year": 68000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 95000,
+        "obc": 125000,
+        "sc": 165000,
+        "st": 205000
+      },
+      "placement_avg_lpa": 4.5,
+      "placement_highest_lpa": 12,
+      "hostel": true,
+      "naac_grade": "B+",
+      "website": "www.gkciet.ac.in",
+      "contact": "03512-223003",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Sports Ground",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi"
+      ],
+      "description": "GFTI under Ministry of Education, located in Malda Town, West Bengal. Under JoSAA/CSAB counselling. Centrally funded technical institute serving North Bengal region. Offers B.Tech in engineering disciplines with government-funded affordable fees."
+    },
+    {
+      "id": 392,
+      "name": "J.K. Institute of Applied Physics & Technology, University of Allahabad",
+      "state": "Uttar Pradesh",
+      "city": "Prayagraj",
+      "type": "GFTI (Central University Department)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "M.Sc",
+        "Ph.D"
+      ],
+      "branches": [
+        "Electronics & Communication",
+        "Computer Science",
+        "Information Technology",
+        "Applied Physics"
+      ],
+      "fees_per_year": 65000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 88000,
+        "obc": 118000,
+        "sc": 158000,
+        "st": 198000
+      },
+      "placement_avg_lpa": 5.0,
+      "placement_highest_lpa": 14,
+      "hostel": true,
+      "naac_grade": "A+",
+      "website": "www.allduniv.ac.in",
+      "contact": "0532-2460993",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Sports Complex",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi",
+        "Research Facilities"
+      ],
+      "description": "Engineering department of University of Allahabad (now Prayagraj), a Central University. GFTI under JoSAA/CSAB. University of Allahabad is NAAC A++ accredited. One of the oldest institutions in India with strong academic legacy."
+    },
+    {
+      "id": 393,
+      "name": "Birla Institute of Technology (BIT), Patna",
+      "state": "Bihar",
+      "city": "Patna",
+      "type": "GFTI (Deemed University - Off Campus)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "MCA",
+        "MBA"
+      ],
+      "branches": [
+        "Computer Science",
+        "Electronics & Communication",
+        "Mechanical",
+        "Civil",
+        "Electrical",
+        "IT",
+        "Production Engineering"
+      ],
+      "fees_per_year": 110000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 50000,
+        "obc": 70000,
+        "sc": 105000,
+        "st": 135000
+      },
+      "placement_avg_lpa": 6.5,
+      "placement_highest_lpa": 24,
+      "hostel": true,
+      "naac_grade": "A",
+      "website": "www.bitmesra.ac.in/patna",
+      "contact": "0612-2265583",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Sports Ground",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi",
+        "Health Centre"
+      ],
+      "description": "Off-campus of BIT Mesra (Ranchi), located in Patna, Bihar. GFTI under JoSAA/CSAB. Part of the prestigious Birla Institute of Technology, Mesra family. Offers quality B.Tech education in the capital of Bihar with good industry connections."
+    },
+    {
+      "id": 394,
+      "name": "Birla Institute of Technology (BIT), Deoghar",
+      "state": "Jharkhand",
+      "city": "Deoghar",
+      "type": "GFTI (Deemed University - Off Campus)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "MCA"
+      ],
+      "branches": [
+        "Computer Science",
+        "Electronics & Communication",
+        "Mechanical",
+        "Civil",
+        "Electrical",
+        "IT"
+      ],
+      "fees_per_year": 105000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 55000,
+        "obc": 75000,
+        "sc": 110000,
+        "st": 142000
+      },
+      "placement_avg_lpa": 6.0,
+      "placement_highest_lpa": 22,
+      "hostel": true,
+      "naac_grade": "A",
+      "website": "www.bitmesra.ac.in/deoghar",
+      "contact": "06432-225754",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Sports Ground",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi"
+      ],
+      "description": "Off-campus of BIT Mesra (Ranchi), located in Deoghar, Jharkhand. GFTI under JoSAA/CSAB. Shares the academic and administrative framework of the parent institute BIT Mesra. Offers quality B.Tech programs in engineering disciplines."
+    },
+    {
+      "id": 395,
+      "name": "National Institute of Advanced Manufacturing Technology (NIAMT), Ranchi",
+      "state": "Jharkhand",
+      "city": "Ranchi",
+      "type": "GFTI (Central Government Institute)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "Ph.D"
+      ],
+      "branches": [
+        "Manufacturing Technology",
+        "Mechanical Engineering",
+        "Production Engineering",
+        "Industrial Engineering",
+        "Computer Science",
+        "Electronics"
+      ],
+      "fees_per_year": 78000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 85000,
+        "obc": 112000,
+        "sc": 152000,
+        "st": 192000
+      },
+      "placement_avg_lpa": 5.5,
+      "placement_highest_lpa": 18,
+      "hostel": true,
+      "naac_grade": "B+",
+      "website": "www.niamt.ac.in",
+      "contact": "0651-2290051",
+      "facilities": [
+        "Library",
+        "Advanced Manufacturing Labs",
+        "CNC Workshop",
+        "Sports Ground",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi"
+      ],
+      "description": "Formerly National Institute of Foundry and Forge Technology (NIFFT). GFTI under Ministry of Heavy Industries, JoSAA/CSAB. Specialized in advanced manufacturing and production technologies. Excellent for students interested in core manufacturing industry."
+    },
+    {
+      "id": 396,
+      "name": "Gati Shakti Vishwavidyalaya (GSV), Vadodara",
+      "state": "Gujarat",
+      "city": "Vadodara",
+      "type": "GFTI (Central University)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "MBA",
+        "Ph.D"
+      ],
+      "branches": [
+        "Civil Engineering",
+        "Mechanical Engineering",
+        "Electronics",
+        "Computer Science",
+        "Transportation Engineering",
+        "Logistics & Supply Chain"
+      ],
+      "fees_per_year": 90000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 72000,
+        "obc": 98000,
+        "sc": 138000,
+        "st": 175000
+      },
+      "placement_avg_lpa": 6.0,
+      "placement_highest_lpa": 20,
+      "hostel": true,
+      "naac_grade": "Not yet accredited",
+      "website": "www.gsvuniversity.ac.in",
+      "contact": "0265-2282000",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Sports Ground",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi",
+        "Railway Training Facilities"
+      ],
+      "description": "Formerly National Rail and Transportation Institute (NRTI), reconstituted as Gati Shakti Vishwavidyalaya in 2022. GFTI under JoSAA/CSAB. Focused on transportation, logistics and infrastructure. Unique university under Ministry of Railways with industry-integrated curriculum."
+    },
+    {
+      "id": 397,
+      "name": "Central University of Jharkhand (CUJ), Ranchi",
+      "state": "Jharkhand",
+      "city": "Ranchi",
+      "type": "GFTI (Central University)",
+      "courses": [
+        "B.Tech",
+        "M.Tech",
+        "B.Sc",
+        "M.Sc",
+        "MBA",
+        "Ph.D"
+      ],
+      "branches": [
+        "Computer Science",
+        "Electronics & Communication",
+        "Civil",
+        "Electrical",
+        "Nano Science & Technology",
+        "Water Engineering"
+      ],
+      "fees_per_year": 74000,
+      "entrance_exam": [
+        "JEE Main",
+        "JOSAA",
+        "CSAB"
+      ],
+      "cutoff_rank": {
+        "general": 88000,
+        "obc": 118000,
+        "sc": 158000,
+        "st": 198000
+      },
+      "placement_avg_lpa": 5.0,
+      "placement_highest_lpa": 14,
+      "hostel": true,
+      "naac_grade": "B+",
+      "website": "www.cuj.ac.in",
+      "contact": "06531-222363",
+      "facilities": [
+        "Library",
+        "Labs",
+        "Sports Ground",
+        "Hostel",
+        "Cafeteria",
+        "Wi-Fi",
+        "Health Centre"
+      ],
+      "description": "Central University of Jharkhand located in Brambe, Ranchi. GFTI under JoSAA/CSAB. Established in 2009. Offers unique B.Tech programs including Nano Science and Water Engineering. Affordable centrally-funded education in tribal-region state of Jharkhand."
     }
   ]
 }
