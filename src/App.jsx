@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import AppRoutes from "./routes/AppRoutes";
 import { useUser } from "./context/UserContext";
 import FloatingChatButton from "./components/common/FloatingChatButton";
-import ChatbotSupport from "./components/dashboard/ChatbotSupport";
 import RSLeadCapturePopup from "./components/common/RSLeadCapturePopup";
+
+const ChatbotSupport = lazy(
+  () => import("./components/dashboard/ChatbotSupport"),
+);
 
 function App() {
   const location = useLocation();
@@ -140,7 +143,7 @@ function App() {
       {loading ? (
         <div className="rs-loader">
           <img
-            src="./images/home/logo.webp"
+            src="/images/home/logo.webp"
             alt="RS Education"
             className="rs-loader-logo"
           />
@@ -157,7 +160,12 @@ function App() {
 
           {/* ✅ Chatbot modal */}
           {showChat && (
-            <ChatbotSupport onClose={() => setShowChat(false)} mode="widget" />
+            <Suspense fallback={<div>Loading chat...</div>}>
+              <ChatbotSupport
+                onClose={() => setShowChat(false)}
+                mode="widget"
+              />
+            </Suspense>
           )}
 
           {/* ✅ Lead Popup */}
