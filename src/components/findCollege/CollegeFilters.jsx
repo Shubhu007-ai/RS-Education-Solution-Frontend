@@ -3,20 +3,16 @@
 import React, { useMemo } from "react";
 import { FiSearch, FiRotateCcw } from "react-icons/fi";
 import { FaFilter } from "react-icons/fa";
-
-import collegeData from "../../data/colleges.json";
 import "../../styles/findCollege/collegeFilters.css";
 
 const CollegeFilters = ({
+  colleges,
   filters,
   setFilters,
   sortBy,
   setSortBy,
   resetFilters,
 }) => {
-  const colleges = useMemo(() => {
-  return collegeData.colleges || [];
-}, []);
 
 /* =========================
      ALLOWED STATES
