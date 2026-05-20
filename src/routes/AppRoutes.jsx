@@ -1,12 +1,7 @@
+import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Home from "../pages/Home";
-import Services from "../pages/Services";
-import Programs from "../pages/Programs";
-import AITools from "../pages/ai-tools/AITools";
-import Contact from "../pages/Contact";
 import Unsubscribe from "../pages/Unsubscribe";
-import FindCollege from "../pages/FindCollege";
 
 // Auth
 import Login from "../pages/auth/Login";
@@ -18,27 +13,84 @@ import SetPassword from "../pages/auth/SetPassword";
 
 // Protected Route
 import ProtectedRoute from "./ProtectedRoute";
-import AdminDashboard from "../pages/admin/AdminDashboard";
-// Layout
-import DashboardLayout from "../components/layout/DashboardLayout";
+
+const Home = lazy(() => import("../pages/Home"));
+
+const Services = lazy(() => import("../pages/Services"));
+
+const Programs = lazy(() => import("../pages/Programs"));
+
+const AITools = lazy(() =>
+  import("../pages/ai-tools/AITools"),
+);
+
+const Contact = lazy(() => import("../pages/Contact"));
+
+const FindCollege = lazy(() =>
+  import("../pages/FindCollege"),
+);
+
+const AdminDashboard = lazy(() =>
+  import("../pages/admin/AdminDashboard"),
+);
 
 // Dashboard
-import DashboardHome from "../pages/dashboard/DashboardHome";
-import Documents from "../pages/dashboard/Documents";
-import TaskManager from "../pages/dashboard/TaskManager";
-import Profile from "../pages/dashboard/Profile";
-import CustomerSupport from "../pages/dashboard/CustomerSupport";
-import SavedColleges from "../pages/dashboard/SavedColleges";
-import CollegeRecommendation from "../pages/dashboard/CollegeRecommendation";
-import ChatbotSupport from "../components/dashboard/ChatbotSupport";
+const DashboardHome = lazy(() =>
+  import("../pages/dashboard/DashboardHome"),
+);
 
-// AI TOOLS
-import CareerChatbot from "../pages/ai-tools/CareerChatbot";
-import DocumentAnalyzer from "../pages/ai-tools/DocumentAnalyzer";
-import ScholarshipPrediction from "../pages/ai-tools/ScholarshipPrediction";
-import RoadmapGenerator from "../pages/ai-tools/RoadmapGenerator";
-import ResumeBuilder from "../pages/ai-tools/ResumeBuilder";
-import StudyPlanning from "../pages/ai-tools/StudyPlanner";
+const Documents = lazy(() =>
+  import("../pages/dashboard/Documents"),
+);
+
+const TaskManager = lazy(() =>
+  import("../pages/dashboard/TaskManager"),
+);
+
+const Profile = lazy(() =>
+  import("../pages/dashboard/Profile"),
+);
+
+const CustomerSupport = lazy(() =>
+  import("../pages/dashboard/CustomerSupport"),
+);
+
+const SavedColleges = lazy(() =>
+  import("../pages/dashboard/SavedColleges"),
+);
+
+// Ai tools
+const CollegeRecommendation = lazy(() =>
+  import("../pages/dashboard/CollegeRecommendation"),
+);
+
+const CareerChatbot = lazy(() =>
+  import("../pages/ai-tools/CareerChatbot"),
+);
+
+const DocumentAnalyzer = lazy(() =>
+  import("../pages/ai-tools/DocumentAnalyzer"),
+);
+
+const ScholarshipPrediction = lazy(() =>
+  import("../pages/ai-tools/ScholarshipPrediction"),
+);
+
+const RoadmapGenerator = lazy(() =>
+  import("../pages/ai-tools/RoadmapGenerator"),
+);
+
+const ResumeBuilder = lazy(() =>
+  import("../pages/ai-tools/ResumeBuilder"),
+);
+
+const StudyPlanning = lazy(() =>
+  import("../pages/ai-tools/StudyPlanner"),
+);
+
+// Layout
+import DashboardLayout from "../components/layout/DashboardLayout";
+import ChatbotSupport from "../components/dashboard/ChatbotSupport";
 
 // Legal
 import Terms from "../pages/legal/Terms";
@@ -46,7 +98,14 @@ import Privacy from "../pages/legal/Privacy";
 import Disclaimer from "../pages/legal/Disclaimer";
 
 export default function AppRoutes() {
-  return (
+ return (
+  <Suspense
+    fallback={
+      <div className="rs-page-loader">
+        Loading...
+      </div>
+    }
+  >
     <Routes>
       {/* ================= PUBLIC ROUTES ================= */}
 
@@ -218,5 +277,6 @@ export default function AppRoutes() {
         }
       />
     </Routes>
+    </Suspense>
   );
 }
